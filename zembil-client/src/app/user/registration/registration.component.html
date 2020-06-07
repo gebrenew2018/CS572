@@ -1,0 +1,88 @@
+<!-- <form #registrationForm="ngForm" (ngSubmit)="registrationForm.valid && onSubmit(registrationForm)">
+    <fieldset>
+        <legend>Customer Account Creation</legend>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="">First Name</label>
+                <input matInput type="text" class="form-control" name="firstName" placeholder="First Name" #firstName="ngModel" [(ngModel)]="userService.selectedUser.firstName" required>
+                <div *ngIf="registrationForm.submitted && !firstName.valid">
+                    <label for="" style="color: red;">This field is required.</label>
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="">Last Name</label>
+                <input type="text" class="form-control" name="lastName" placeholder="LastName" #lastName="ngModel" [(ngModel)]="userService.selectedUser.lastName" required>
+                <div *ngIf="registrationForm.submitted && !lastName.valid">
+                    <label for="" style="color: red;">This field is required.</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-8">
+                <label for="">Email</label>
+                <input type="text" class="form-control" name="email" placeholder="Email" #email="ngModel" [(ngModel)]="userService.selectedUser.email" required [pattern]="emailRegExp">
+                <div *ngIf="registrationForm.submitted && email.errors">
+                    <label *ngIf="email.errors.required" for="" style="color: red;">This field is required.</label>
+                    <label *ngIf="email.errors.pattern" for="" style="color: red;">Invalid Email address.</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" required minlength="5">
+                <div *ngIf="registrationForm.submitted && !password.valid">
+                    <label *ngIf="password.errors.required" for="" style="color: red;">This field is required.</label>
+                    <label *ngIf="password.errors.minlength" style="color: red;">Password must me minimum of 5 characters.</label>
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="">Confirm Password</label>
+                <input type="password" class="form-control" name="confirm" placeholder="Confirm" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-info"><i class="fa fa-database" style="float: right;"></i> Submit</button>
+        </div>
+    </fieldset>
+</form> -->
+<form [formGroup]="userService.form" class="my-form" (ngSubmit)="userService.form && onSubmit(userService.form)">
+    <mat-grid-list cols="2" rowHeight="400px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden" formControlName="$key">
+                <mat-form-field>
+                    <input formControlName="firstName" matInput placeholder="First Name *">
+                    <mat-error>First Name cannot be empty!</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="lastName" matInput placeholder="Last Name">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="email" matInput placeholder="Email Address">
+                    <mat-error>Enter a valid email address!</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="password" matInput placeholder="Password">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select formControlName="role" placeholder="Register as">
+                        <mat-option>None</mat-option>
+                        <mat-option value="Seller">Seller</mat-option>
+                        <mat-option value="Buyer">Buyer</mat-option>
+
+                        <!-- <ng-container *ngFor="let rolee of userRoles">
+                            <mat-option value="{{rolee.id}}">{{rolee.value}}</mat-option>
+                        </ng-container> -->
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Register</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>image</mat-grid-tile>
+    </mat-grid-list>
+</form>
