@@ -6,6 +6,7 @@ const Product = require('../models/product.model');
 module.exports.addNewProduct = (req, res, next) => {
     console.log(req.file);
     const product = new Product({
+        
         productName: req.body.productName,
         quantity: req.body.quantity,
         supplierId: req.body.supplierId,
