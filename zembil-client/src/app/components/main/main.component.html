@@ -1,7 +1,10 @@
 <section class="sec1">
     <div class="row" style="padding-top: 20px;">
 
-        <div class="col-md-3 col-sm-6" *ngFor="let item of items">
+        <div class="col-md-3 col-sm-6" *ngFor="let item of items | paginate:{id:'listing_pagination',
+        itemsPerPage:12,
+        currentPage:page,
+        totalItems: totalRecords}">
             <div class="product-grid">
                 <div class="product-image">
                     <a href="#">
@@ -46,12 +49,16 @@
         </div> -->
         <!-- end of products -->
     </div>
+
+    <div>
+        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page=$event"></pagination-controls>
+    </div>
 </section>
 <section class="sec2">
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
     </p>
-    <p>
+    <!-- <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
     </p>
     <p>
@@ -59,13 +66,13 @@
     </p>
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
-    </p>
+    </p> -->
 </section>
 <section class="sec3">
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
     </p>
-    <p>
+    <!-- <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
     </p>
     <p>
@@ -73,5 +80,5 @@
     </p>
     <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
-    </p>
+    </p> -->
 </section>
