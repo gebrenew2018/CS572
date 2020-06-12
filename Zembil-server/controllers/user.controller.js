@@ -77,7 +77,7 @@ module.exports.changeUserStatus = (req, res, next) => {
     }
     // update user details by user _id
 module.exports.updateUserDetails = (req, res, next) => {
-    var user = {
+    var newUserdetail = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         telephone: req.body.telephone,
@@ -87,12 +87,12 @@ module.exports.updateUserDetails = (req, res, next) => {
     }
     User.findById(req.params.userid, (err, user) => {
         if (!err) {
-            user.firstName = req.body.firstName,
-                user.lastName = req.body.lastName,
-                user.telephone = req.body.telephone,
-                user.email = req.body.email,
-                user.password = req.body.password,
-                user.role = req.body.role
+            user.firstName = newUserdetail.firstName;
+            user.lastName = newUserdetail.lastName;
+            user.telephone = newUserdetail.telephone;
+            user.email = newUserdetail.email;
+            user.password = newUserdetail.password;
+            user.role = newUserdetail.role;
             user.save((err, doc) => {
                 if (!err) {
                     res.status(200).json({ user: doc });

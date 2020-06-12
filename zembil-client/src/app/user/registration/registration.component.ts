@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit(form) {
     this.userService.postUser(form.value).subscribe(
       res => {
         console.log('Successfully saved!');
