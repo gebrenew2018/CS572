@@ -3,6 +3,7 @@ const Product = require('../models/product.model');
 
 exports.addToCart = (req, res, next) => {
     console.log('addto cart ');
+    console.log('This is from gebre');
 
 }
 exports.getCart = (req, res, next) => {
