@@ -8,6 +8,11 @@ const passport = require('passport'); // for authentication
 
 const rtsUser = require('./routes/user.router');
 const rtsProduct = require('./routes/product.router');
+
+
+const rtsCreditCard = require('./routes/creditCard.router'); // from mihreteab
+
+
 var app = express();
 
 
@@ -19,6 +24,8 @@ app.use(passport.initialize()); // for authentication
 
 app.use('/api/v1/users', rtsUser);
 app.use('/api/v1/products', rtsProduct);
+
+app.use('/api/v1/creditCards', rtsCreditCard); // from mihreteab
 
 
 // global error handling
