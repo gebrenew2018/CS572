@@ -8,6 +8,9 @@ const passport = require('passport'); // for authentication
 
 const rtsUser = require('./routes/user.router');
 const rtsProduct = require('./routes/product.router');
+
+const rtsCart = require('./routes/cart.router');
+
 var app = express();
 
 
@@ -19,6 +22,8 @@ app.use(passport.initialize()); // for authentication
 
 app.use('/api/v1/users', rtsUser);
 app.use('/api/v1/products', rtsProduct);
+
+app.use('/api/v1/cart', rtsCart);
 
 
 // global error handling
