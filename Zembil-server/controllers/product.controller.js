@@ -42,6 +42,7 @@ module.exports.addNewProduct = (req, res, next) => {
                 } else if (!product) {
                     res.status(404).json({ message: 'Error in fetching the saved product.' });
                 } else {
+                    console.log(product);
                     res.status(200).json({ product: product });
                 }
             });
