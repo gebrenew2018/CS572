@@ -7,11 +7,10 @@ var creditCardSchema = new Schema({
         type: String,
         required: [true, 'CardId cannot be empty.'],
     },
-    cardOwner:{ userId: {
-        type: Schema.Types.ObjectId,
+    cardOwner:{ 
+        type: String,
         ref: 'User',
         required: [true, 'CardOwner cannot be empty.'],
-    }
 },
     billingAddress: { addressId:{
         type: String,
