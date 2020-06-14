@@ -22,7 +22,7 @@ var creditCardSchema = new Schema({
         type: Number,
         required: [true, 'Card Number cannot be empty']
     },
-    ccv: {
+    csv: {
         type: Number,
         required: [true, 'Card security code cannot be empty']
     },
