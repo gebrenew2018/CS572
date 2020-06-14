@@ -8,7 +8,7 @@ const paymentScehma = new Schema({
     },
     user: {
         userId: {
-            type: mongoose.Types.ObjectId,
+            type: String,
             ref: 'User',
             required: true
         }
@@ -16,7 +16,7 @@ const paymentScehma = new Schema({
     },
     order: [{
         orderId: {
-            type: mongoose.Types.ObjectId,
+            type: String,
             ref: 'Order',
             required: true
         },
