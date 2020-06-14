@@ -4,6 +4,7 @@ const Product = mongoose.model('Product');
 
 
 exports.addToCart = async(req, res, next) => {
+    //req.user.id
     console.log(req.body.products[0].productId);
     const product = await Product.findById(req.body.products[0].productId);
     console.log(product);
