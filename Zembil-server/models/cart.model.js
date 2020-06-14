@@ -1,6 +1,6 @@
 //npm i bcryptjs body-parser cors express jsonwebtoken lodash mongoose multer nodemon passport passport-local 
 const mongoose = require('mongoose');
-const Product = required('./product.model.js');
+const Product = require('./product.model.js');
 const Schema = mongoose.Schema;
 
 const cartSchema = new Schema({
@@ -48,7 +48,7 @@ cartSchema.methods.addToCart = async function(productId) {
     const product = await Product.findById(productId);
     if (product) {
         let cart = this.cart;
-        const
+       // const
     }
 }
 
