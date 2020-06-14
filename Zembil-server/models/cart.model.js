@@ -1,6 +1,10 @@
 //npm i bcryptjs body-parser cors express jsonwebtoken lodash mongoose multer nodemon passport passport-local 
 const mongoose = require('mongoose');
 
+const Product = require('./product.model.js');
+
+
+
 const Schema = mongoose.Schema;
 
 const cartSchema = new Schema({
@@ -35,6 +39,7 @@ const cartSchema = new Schema({
     }
 
 });
+
 
 
 module.exports = mongoose.model('Cart', cartSchema);
