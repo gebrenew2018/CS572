@@ -9,7 +9,7 @@ export class MainComponent implements OnInit {
   items: Object[];
   totalRecords :number;
   page: number = 1;
- 
+
   constructor() {
    }
   ngOnInit(): void {
@@ -233,7 +233,8 @@ export class MainComponent implements OnInit {
   }
   addTocart(itemid:any){
     console.log(itemid);
-    
+
+
   }
 
 

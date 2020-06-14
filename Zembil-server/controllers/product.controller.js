@@ -61,6 +61,8 @@ module.exports.getAllProducts = (req, res, next) => {
         }
     });
 }
+
+
 module.exports.getProductDetails = (req, res, next) => {
     const productid = req.params.productid;
     const filter = { _id: productid };

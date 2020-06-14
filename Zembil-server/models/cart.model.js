@@ -1,6 +1,10 @@
 //npm i bcryptjs body-parser cors express jsonwebtoken lodash mongoose multer nodemon passport passport-local 
 const mongoose = require('mongoose');
+
 const Product = require('./product.model.js');
+
+
+
 const Schema = mongoose.Schema;
 
 const cartSchema = new Schema({
@@ -8,28 +12,21 @@ const cartSchema = new Schema({
         type: String,
         required: true
     },
-    user: {
-        userId: {
-            type: mongoose.Types.ObjectId,
-            ref: 'User',
-            required: true
-        }
-
+    userId: {
+        type: String,
+        ref: 'User',
+        required: true
     },
     products: [{
-        poductId: {
+        productId: {
             type: String,
             ref: 'Product',
             required: true
         },
-        name: {
-            type: String,
-            required: 'name can\'t be empty',
-        },
-        price: {
-            type: Number,
-            required: 'price can\'t be empty',
-        },
+        // price: {
+        //     type: Number,
+        //     required: 'price can\'t be empty',
+        // },
         quantity: {
             type: Number,
             required: 'quantity can\'t be empty',
@@ -42,15 +39,6 @@ const cartSchema = new Schema({
     }
 
 });
-
-//methods 
-cartSchema.methods.addToCart = async function(productId) {
-    const product = await Product.findById(productId);
-    if (product) {
-        let cart = this.cart;
-       // const
-    }
-}
 
 
 
