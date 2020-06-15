@@ -26,10 +26,10 @@ app.use(passport.initialize()); // for authentication
 app.use(cookieParser());
 app.use('/api/v1/users', rtsUser);
 app.use('/api/v1/products', rtsProduct);
-
 app.use('/api/v1/cart', rtsCart);
 
 app.use('/api/v1/creditCards', rtsCreditCard); 
+
 
 
 

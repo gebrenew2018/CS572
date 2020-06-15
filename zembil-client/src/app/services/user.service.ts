@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import { User } from '../models/user.model'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,21 +19,27 @@ export class UserService {
     $key : new FormControl(null),
     firstName: new FormControl('',[Validators.required, Validators.minLength(2)]),
     lastName: new FormControl(''),
-    email: new FormControl('',Validators.email),
-    password: new FormControl(''),
+    telephone: new FormControl('',[Validators.maxLength(12)]),
+    email: new FormControl('',[Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
     role: new FormControl(0)
   });
+
+  loginForm:FormGroup = new FormGroup({
+    email: new FormControl('',Validators.email),
+    password: new FormControl('', Validators.required)
+  })
   noAuthHeader ={headers: new HttpHeaders({'NoAuth':'True'})}
   constructor(private http: HttpClient) { }
 
   postUser(user: User){
     return this.http.post(environment.apiBaseUrl+'/users/register',user,this.noAuthHeader);
   }
-  logInUser(credentials){
-    return this.http.post(environment.apiBaseUrl+'/authenticate',credentials,this.noAuthHeader);
+  logInUser(credentials){    
+    return this.http.post(environment.apiBaseUrl+'/users/authenticate',credentials,this.noAuthHeader);
   }
   getUserDetails(){
-    return this.http.get(environment.apiBaseUrl+'/details')
+    return this.http.get(environment.apiBaseUrl+'/users/details')
   }
 
   // helper methods 

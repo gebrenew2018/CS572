@@ -49,7 +49,7 @@
     </fieldset>
 </form> -->
 <form [formGroup]="userService.form" class="my-form" (ngSubmit)="userService.form && onSubmit(userService.form)">
-    <mat-grid-list cols="2" rowHeight="400px">
+    <mat-grid-list cols="2" rowHeight="450px">
         <mat-grid-tile>
             <div class="controles-container">
                 <input type="hidden" formControlName="$key">
@@ -61,23 +61,32 @@
                     <input formControlName="lastName" matInput placeholder="Last Name">
                 </mat-form-field>
                 <mat-form-field>
+                    <input formControlName="telephone" type="number" matInput placeholder="Telephone Number">
+                </mat-form-field>
+                <mat-form-field>
                     <input formControlName="email" matInput placeholder="Email Address">
                     <mat-error>Enter a valid email address!</mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <input formControlName="password" matInput placeholder="Password">
                 </mat-form-field>
-                <mat-form-field>
-                    <mat-select formControlName="role" placeholder="Register as">
-                        <mat-option>None</mat-option>
-                        <mat-option value="Seller">Seller</mat-option>
-                        <mat-option value="Buyer">Buyer</mat-option>
 
-                        <!-- <ng-container *ngFor="let rolee of userRoles">
-                            <mat-option value="{{rolee.id}}">{{rolee.value}}</mat-option>
-                        </ng-container> -->
+                <mat-form-field>
+                    <mat-select formControlName="role" placeholder="Register as" required>
+                        <mat-option value="2">Buyer </mat-option>
+                        <mat-option value="3">Seller </mat-option>
+                        <mat-option value="4">Delivery </mat-option>
                     </mat-select>
+
                 </mat-form-field>
+                <!-- <mat-form-field>
+                    <mat-select formControlName="role" placeholder="Register as" required>
+                        <mat-option *ngFor="let role of roles" value="role.Id">
+                            {{role.Description}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
+
                 <div>
                     <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Register</button>
                 </div>
