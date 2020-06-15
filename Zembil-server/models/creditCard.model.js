@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
 const creditCardSchema = new Schema({
 
     _id: {
@@ -11,6 +12,7 @@ const creditCardSchema = new Schema({
         type: String,
         ref: 'User',
         required: [true, 'CardOwner cannot be empty.'],
+        unique: true
     },
     billingAddress: {
         type: String,
@@ -18,12 +20,14 @@ const creditCardSchema = new Schema({
 
     },
     cardNumber: {
-        type: Number,
-        required: [true, 'Card Number cannot be empty']
+        type: String,
+        required: [true, 'Card Number cannot be empty'],
+        unique:true,
     },
     csv: {
         type: Number,
-        required: [true, 'Card security code cannot be empty']
+        required: [true, 'Card security code cannot be empty'],
+        length:[3, 'must be three digits']
     },
     expMonth: {
         type: Number,
