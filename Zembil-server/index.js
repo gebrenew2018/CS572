@@ -22,8 +22,8 @@ app.use(passport.initialize()); // for authentication
 
 app.use('/api/v1/users', rtsUser);
 app.use('/api/v1/products', rtsProduct);
-
 app.use('/api/v1/cart', rtsCart);
+
 
 
 // global error handling

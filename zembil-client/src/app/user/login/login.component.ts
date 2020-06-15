@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(public userService: UserService, private router: Router) { }
   model ={
     email :'',
     password:''
@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
     if(this.userService.isLoggedIn())
     this.router.navigateByUrl('/users/details');
   }
-  
-  onSubmit(form: NgForm) {
+  onSubmit(form) {
     this.userService.logInUser(form.value).subscribe(
       res => {
         console.log('Successfully Logged in!');
@@ -31,7 +30,9 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/users/details')
       },
       err => {
-        this.serverErrorMsg = err.error.message;
+        console.log('Error'+err.error.message);
+        
+        this.serverErrorMsg = "";
         // if (err.status === 422) {
         //   // this.serverErrorMessages = err.error.join('<br/>')
         // }
@@ -40,5 +41,8 @@ export class LoginComponent implements OnInit {
         // }
       }
     );
+  }
+  onSignUp(){
+    this.router.navigate(['users','signup']);
   }
 }

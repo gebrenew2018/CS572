@@ -1,0 +1,20 @@
+import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-user-dashbord',
+  templateUrl: './user-dashbord.component.html',
+  styleUrls: ['./user-dashbord.component.css']
+})
+export class UserDashbordComponent implements OnInit {
+
+  constructor(private userService: UserService, private router: Router) { }
+
+  ngOnInit(): void {
+  }
+  onLogout(){
+    this.userService.deleteToken();
+    this.router.navigateByUrl('/users/signin');
+  }
+}

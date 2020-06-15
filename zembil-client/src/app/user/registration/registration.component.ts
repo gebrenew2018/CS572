@@ -1,31 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { NgForm, Validators, FormControl, FormGroup } from '@angular/forms';
-  
+import { RolesModel } from 'src/@shop/lookup/lookupData';
+import {ROLES} from 'src/@shop/const/consts';
+import { from } from 'rxjs';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  
   emailRegExp = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
   serverErrorMessages: string;
-  
-  userRoles = [
-    { id: 1, value: "Admin" },
-    { id: 2, value: "Buyer" },
-    { id: 3, value: "Seller" }
-  ];
-  constructor(public userService: UserService) { }
 
-  ngOnInit(): void {
+  roless :Object[];
+  roles : RolesModel[]=[];
+  constructor(public userService: UserService, private router: Router) { }
+
+  ngOnInit() {
+    this.roless=[{Id:1, Description:'Seller'},
+  {Id: 2, Description:'Buyer'}];
+    this.initStaticData();
   }
-
+initStaticData(){
+let userRoles : RolesModel = new RolesModel();
+ROLES.forEach(pair =>{
+  userRoles={
+    'Id':pair.Id.toString(),
+    'Description':pair.Description
+  };
+  this.roles.push(userRoles);
+})
+}
   onSubmit(form) {
     this.userService.postUser(form.value).subscribe(
       res => {
         console.log('Successfully saved!');
-        this.resetForm(form);
+        this.router.navigateByUrl('/users/signin');
       },
       err => {
         if (err.status === 422) {
@@ -36,17 +50,6 @@ export class RegistrationComponent implements OnInit {
         }
       }
     );
-  }
-
-  resetForm(form: NgForm) {
-    this.userService.selectedUser = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: ''
-    }
-    form.resetForm();
-    this.serverErrorMessages = '';
   }
 
 }

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var sendmail = require('../config/mailSender');
 const Product = mongoose.model('Product');
 
 const path = require('path');
@@ -35,15 +36,19 @@ module.exports.addNewProduct = (req, res, next) => {
                 category: req.body.category,
                 isSold: req.body.isSold
             });
-
             product.save((err, product) => {
                 if (err) {
+                    console.log('Eror');
                     res.status(500).json({ message: 'Error in saving the products = ' + err });
                 } else if (!product) {
+                    console.log('no prod');
                     res.status(404).json({ message: 'Error in fetching the saved product.' });
                 } else {
+                    // send email to customers subscribed
                     console.log(product);
+
                     res.status(200).json({ product: product });
+                    // sendmail.send();
                 }
             });
         }

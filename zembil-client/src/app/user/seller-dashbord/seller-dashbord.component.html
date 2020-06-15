@@ -1,0 +1,38 @@
+<!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="loadProducts()">
+      <mat-icon>list</mat-icon>
+      <span>All Products</span>
+    </button>
+    <button mat-menu-item (click)="addProduct()">
+        <mat-icon>add</mat-icon>
+        <span>New Product</span>
+      </button>
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voice mail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+</mat-menu> -->
+
+<button mat-button [matMenuTriggerFor]="belowMenu">Products</button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+    <button mat-menu-item (click)="loadProducts()">
+        <mat-icon>list</mat-icon> Product List
+    </button>
+    <button mat-menu-item (click)="addProduct()">
+        <mat-icon>add</mat-icon> New Product</button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="belowMenu">Profile</button>
+<mat-menu #belowMenu="matMenu" yPosition="below">
+    <button mat-menu-item>Edit Profile</button>
+    <button mat-menu-item>Change Password</button>
+</mat-menu>
+
+<button mat-button (click)="onLogout()">Logout</button>
+<router-outlet></router-outlet>
