@@ -11,6 +11,9 @@ const rtsUser = require('./routes/user.router');
 const rtsProduct = require('./routes/product.router');
 const rtsCart = require('./routes/cart.router');
 
+const rtsCreditCard = require('./routes/creditCard.router'); // from mihreteab
+
+
 var app = express();
 
 
@@ -25,6 +28,9 @@ app.use('/api/v1/users', rtsUser);
 app.use('/api/v1/products', rtsProduct);
 
 app.use('/api/v1/cart', rtsCart);
+
+app.use('/api/v1/creditCards', rtsCreditCard); 
+
 
 
 // global error handling

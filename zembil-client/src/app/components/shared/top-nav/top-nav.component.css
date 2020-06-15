@@ -1,0 +1,16 @@
+/* *{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+nav{
+    transition: 0.5s;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    
+}
+.navbar ul li{
+    list-style-type: none;
+    display: inline-block;
+} */

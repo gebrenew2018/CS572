@@ -1,0 +1,77 @@
+<section class="sec1">
+    <div class="row" style="padding-top: 20px;">
+
+        <div class="col-md-3 col-sm-6" *ngFor="let item of items">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="{{item.itemImage1}}" alt="i-phone">
+                        <img class="pic-2" src="{{item.itemImage2}}" alt="i-phone2">
+                    </a>
+                    <span class="product-trend-label">
+                        {{item.trending}}
+                    </span>
+                    <ul class="social">
+                        <li><button (click)="addTocart(item.itemid)" data-tip="Add to cart"><i class="fa fa-shopping-cart">Add to cart</i></button></li>
+                        <li> <button (click)="addTocart(item.itemid)" data-tip="Quick view"><i class="fa fa-search">Quick view</i></button></li>
+                    </ul>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"> <a href="#">{{item.itemname}}</a></h3>
+                    <div class="price"> {{item.itemprice}}</div>
+                </div>
+            </div>
+        </div>
+        <!-- product grid model  -->
+        <!-- <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#">
+                        <img class="pic-1" src="../../../assets/img/i1.jpg" alt="i-phone">
+                        <img class="pic-2" src="../../../assets/img/i2.jpg" alt="i-phone">
+                    </a>
+                    <span class="product-trend-label">
+                        Trending
+                    </span>
+                    <ul class="social">
+                        <li><a href="#" data-tip="Add to cart"><i class="fa fa-shopping-cart">Add to cart</i></a></li>
+                        <li> <a href="#" data-tip="Quick view"><i class="fa fa-search">Quick view</i></a></li>
+                    </ul>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"> <a href="#">i-Phone 11 pro</a></h3>
+                    <div class="price">$21.00</div>
+                </div>
+            </div>
+        </div> -->
+        <!-- end of products -->
+    </div>
+</section>
+<section class="sec2">
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
+    </p>
+</section>
+<section class="sec3">
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure voluptatibus debitis numquam eligendi fugiat labore laudantium, blanditiis sed nobis mollitia possimus culpa nihil modi aperiam? Ipsam id odit voluptate quod?
+    </p>
+</section>
