@@ -31,7 +31,6 @@ module.exports.addNewCreditCard = (req, res, next) => {
 
 }
 
-
 module.exports.getAllCreditCards = (req, res, next) => {
     CreditCard.find((err, creditCard) => {
         if (err) {
@@ -64,22 +63,17 @@ module.exports.makePayment = (req, res, next) => {
     CreditCard.find(creditCard, (err, creditCard) => {
         if (err) {
             res.status(400).jason({ message: 'Error in reading card' });
-
         } else if (!creditCard) {
             res.status(404).json({ message: 'No card found' });
         } else {
             var amount = parseInt(req.body.amountInCard);
             // const  newAmount = cart.user.creditCard.amountInCard - cart.totalPrice; 
             var newAmount = amount - 1000;
-           
             console.log(amount);
-          
             amount = newAmount;
-            // update card balamnce in data base. write code to update
+            // update card balance in data base. write code to here to update balance put method
             // res.status(200).json({ message: 'you have been charged: '+cart.totalPrice});
             res.status(200).json({ message: 'you have been charged: ' + 1000 });
-         
-
 
         }
     });
