@@ -1,33 +1,32 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-var creditCardSchema = new Schema({
+const creditCardSchema = new Schema({
 
     _id: {
         type: String,
         required: [true, 'CardId cannot be empty.'],
     },
-    cardOwner:{ userId: {
-        type: Schema.Types.ObjectId,
+    cardOwner: {
+        type: String,
         ref: 'User',
         required: [true, 'CardOwner cannot be empty.'],
-    }
-},
-    billingAddress: { addressId:{
+    },
+    billingAddress: {
         type: String,
         required: [true, 'Billing address cannot be empty']
-    }
-},
+
+    },
     cardNumber: {
         type: Number,
         required: [true, 'Card Number cannot be empty']
     },
-    ccv: {
+    csv: {
         type: Number,
         required: [true, 'Card security code cannot be empty']
     },
     expMonth: {
-        type: Date,
+        type: Number,
         required: [true, 'Card Expirstion date cannot be empty.'],
     },
     expYear: {
@@ -40,4 +39,4 @@ var creditCardSchema = new Schema({
     }
 });
 
-mongoose.model('creditCard', creditCardSchema);
+module.exports = mongoose.model('CreditCard', creditCardSchema);

@@ -19,7 +19,7 @@ export class RegistrationComponent implements OnInit {
   roless :Object[];
   roles : RolesModel[]=[];
   constructor(public userService: UserService, private router: Router) { }
-
+  
   ngOnInit() {
     this.roless=[{Id:1, Description:'Seller'},
   {Id: 2, Description:'Buyer'}];

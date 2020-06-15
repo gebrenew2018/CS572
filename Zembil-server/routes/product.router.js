@@ -13,4 +13,5 @@ router.delete('/delete/:productid', productController.deleteProduct);
 router.get('/:productid', productController.getProductDetails);
 router.put('/update-quantity/:productid', productController.updateQuantity);
 
+
 module.exports = router;

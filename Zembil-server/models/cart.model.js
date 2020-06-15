@@ -1,57 +1,25 @@
-//npm i bcryptjs body-parser cors express jsonwebtoken lodash mongoose multer nodemon passport passport-local 
-const mongoose = require('mongoose');
-const Product = required('./product.model.js');
-const Schema = mongoose.Schema;
+module.exports = function Cart(oldCart) {
+    this.items = oldCart.items || {};
+    this.totalQuantity = oldCart.totalQuantity || 0;
+    this.totalPrice = oldCart.totalPrice || 0;
 
-const cartSchema = new Schema({
-    _id: {
-        type: String,
-        required: true
-    },
-    user: {
-        userId: {
-            type: mongoose.Types.ObjectId,
-            ref: 'User',
-            required: true
+
+    this.add = function(item, id) {
+        var storedItem = this.items[id];
+        if (!storedItem) {
+            storedItem = this.items[id] = { item: item, quantity: 0, unitPrice: 0 };
         }
-
-    },
-    products: [{
-        poductId: {
-            type: String,
-            ref: 'Product',
-            required: true
-        },
-        name: {
-            type: String,
-            required: 'name can\'t be empty',
-        },
-        price: {
-            type: Number,
-            required: 'price can\'t be empty',
-        },
-        quantity: {
-            type: Number,
-            required: 'quantity can\'t be empty',
+        storedItem.quantity += 1;
+        storedItem.unitPrice = storedItem.item.unitPrice * storedItem.quantity;
+        this.totalQuantity += 1;
+        this.totalPrice += storedItem.item.unitPrice;
+    };
+    this.generateArray = function() {
+        var arr = [];
+        for (let id in this.items) {
+            arr.push(this.items[id]);
         }
-
-    }],
-    totalPrice: {
-        type: Number,
-        required: true
-    }
-
-});
-
-//methods 
-cartSchema.methods.addToCart = async function(productId) {
-    const product = await Product.findById(productId);
-    if (product) {
-        let cart = this.cart;
-        const
-    }
+        console.log('an array:  ' + arr);
+        return arr;
+    };
 }
-
-
-
-module.exports = mongoose.model('Cart', cartSchema);
