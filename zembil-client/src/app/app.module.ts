@@ -22,7 +22,6 @@ import { UserService } from './services/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.intercepter';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +42,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
-    BrowserAnimationsModule,
-    NgxPaginationModule
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

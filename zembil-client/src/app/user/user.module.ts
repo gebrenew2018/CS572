@@ -10,7 +10,6 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from '../material/material.module';
-import { CartComponent } from './cart/cart.component';
 
 
 
@@ -26,8 +25,7 @@ import { CartComponent } from './cart/cart.component';
         RegistrationComponent,
         UserComponent,
         UserDetailComponent,
-        LoginComponent,
-        CartComponent],
+        LoginComponent],
     providers: [],
 })
 export class UserModule { }
