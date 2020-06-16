@@ -1,26 +1,41 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const schema = new Schema({
+var Schema = mongoose.Schema;
+
+var Schema = new Schema({
     _id: {
         type: String,
-        required: true
+        required: 'Order Id cannot be empty'
     },
     user: {
-        userId: {
-            type: String,
-            ref: 'User',
-            required: true
-        }
+        type: string,
+        ref: 'User'
     },
-    cart: {
-        type: Object,
-        required: true
-    },
-    address: {
+    product: {
         type: String,
-        required: true
+        ref: "Product",
+        required: 'product cannot be empty'
+    },
+    shippingAddress: {
+        type: String,
+        ref: "Address",
+        required: 'Shipping Addrress cannot be empty',
+    },
+    orderDate: {
+        type: Date,
+        default: Date.now
+    },
+    cancelDate: {
+        type: Date,
+        default: Date.now
+    },
+    shippingDate: {
+        type: Date,
+        default: Date.now
+    },
+    deliveryDate: {
+        type: Date
     }
 
 });
-module.exports = mongoose.model('Order', schema);
+mongoose.model('Order', orderSchema);

@@ -1,0 +1,35 @@
+<form [formGroup]="productService.productForm" enctype="multipart/form-data" class="my-form" (ngSubmit)="productService.productForm && onSubmit(productService.productForm)" class="mat-elevation-z2">
+    <mat-grid-list cols="2" rowHeight="450px" style="display:inherit;">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden" formControlName="_id">
+                <mat-form-field>
+                    <input formControlName="productName" matInput placeholder="Product Name *">
+                    <mat-error>Product Name cannot be empty!</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="unitPrice" type="number" matInput placeholder="0.00">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="quantity" type="number" matInput placeholder="0">
+                </mat-form-field>
+                <input type="file" formControlName="image" />
+                <!-- <input formControlName="images" type="file" placeholder="re" multiple (change)="selectImage($event)">
+                <mat-error>Rename as "front" and "back" your product images and upload both files</mat-error> -->
+                <mat-form-field>
+                    <mat-select formControlName="category" placeholder="Category *" required>
+                        <mat-option value="1">Electronics </mat-option>
+                        <mat-option value="2">Clothes </mat-option>
+                        <mat-option value="3">Mobiles </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div>
+                    <button mat-stroked-button color="accent" type="reset">Cancel</button> |
+                    <button mat-raised-button color="primary" type="submit" [disabled]="productService.productForm.invalid">Save</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>image</mat-grid-tile>
+    </mat-grid-list>
+</form>
