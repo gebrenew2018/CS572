@@ -27,7 +27,7 @@ const creditCardSchema = new Schema({
     csv: {
         type: Number,
         required: [true, 'Card security code cannot be empty'],
-        length:[3, 'must be three digits']
+        maxlength:[4, 'must be four digits maximum']
     },
     expMonth: {
         type: Number,
