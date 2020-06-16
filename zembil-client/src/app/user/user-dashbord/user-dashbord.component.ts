@@ -11,7 +11,11 @@ export class UserDashbordComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.router.navigate(['users','user-dashbord','all-products'])
+  }
+  myOrders(){
+    this.router.navigate(['users','user-dashbord','my-orders'])
   }
   onLogout(){
     this.userService.deleteToken();

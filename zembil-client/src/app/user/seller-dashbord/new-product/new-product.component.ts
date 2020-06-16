@@ -10,13 +10,20 @@ import { Router } from '@angular/router';
 export class NewProductComponent implements OnInit {
 
   constructor(public productService:ProductService,private router:Router) { }
+   user;
 
   ngOnInit(): void {
+    if (localStorage.length > 0) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+    } else {
+      this.router.navigate(['users','signin'])
+    }
   }
   onSubmit(productform){
-    console.log(productform.value);    
     this.productService.postProduct(productform.value).subscribe(res=>{
       console.log(res);      
+      this.router.navigate(['users','seller-dashbord','product-list'])
     })
   }
+ 
 }

@@ -10,14 +10,17 @@ var productSchema = new Schema({
         type: String,
         required: [true, 'Product name cannot be empty']
     },
-    frontImage: {
-        type: String,
-        required: [true, 'Product image cannot be empty']
+    image: {
+        type: String
     },
-    backImage: {
-        type: String,
-        required: [true, 'Product image cannot be empty']
-    },
+    // frontImage: {
+    //     type: String,
+    //     required: [true, 'Product image cannot be empty']
+    // },
+    // backImage: {
+    //     type: String,
+    //     required: [true, 'Product image cannot be empty']
+    // },
     quantity: {
         type: Number,
         required: [true, 'Product Quantity cannot be empty']

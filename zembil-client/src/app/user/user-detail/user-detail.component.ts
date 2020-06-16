@@ -17,7 +17,8 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserDetails().subscribe(
       res => {
-        localStorage.setItem('user', res['user']);
+        console.log(res['user']);
+        localStorage.setItem('user',JSON.stringify(res['user']));
         if(res['user'].role == 1 && (res['user'].status ==1 || res['user'].status ==2)){
           this.router.navigateByUrl('/users/admin-dashbord');
         } else if(res['user'].role == 2 && (res['user'].status ==1 || res['user'].status ==2)){

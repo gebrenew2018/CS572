@@ -114,7 +114,6 @@ module.exports.updateUserDetails = (req, res, next) => {
 
 module.exports.authenticate = (req, res, next) => {
     // call the passport authentication
-    console.log('authenticating');
     passport.authenticate('local', (err, user, info) => {
         if (err) return res.status(400).json(err);
         else if (user) res.status(200).json({ "token": user.generateJwt() });
@@ -127,6 +126,8 @@ module.exports.userProfile = (req, res, next) => {
         (err, user) => {
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' })
-            else return res.status(200).json({ status: true, user: _.pick(user, ['_id', 'firstName', 'lastName', 'email', 'role', 'status']) }); // send the necessary information not the whole user data
+            else {
+                return res.status(200).json({ status: true, user: _.pick(user, ['_id', 'firstName', 'lastName', 'email', 'role', 'status']) }); // send the necessary information not the whole user data
+            }
         })
 }

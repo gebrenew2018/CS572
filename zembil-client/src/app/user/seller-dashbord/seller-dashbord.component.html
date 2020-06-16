@@ -28,11 +28,8 @@
     <button mat-menu-item (click)="addProduct()">
         <mat-icon>add</mat-icon> New Product</button>
 </mat-menu>
-<button mat-button [matMenuTriggerFor]="belowMenu">Profile</button>
-<mat-menu #belowMenu="matMenu" yPosition="below">
-    <button mat-menu-item>Edit Profile</button>
-    <button mat-menu-item>Change Password</button>
-</mat-menu>
+<button mat-button (click)="gotoOrders()">Orders</button>
+
 
 <button mat-button (click)="onLogout()">Logout</button>
 <router-outlet></router-outlet>

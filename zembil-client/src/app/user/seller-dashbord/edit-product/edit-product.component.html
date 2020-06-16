@@ -1,4 +1,4 @@
-<form [formGroup]="productService.productForm" enctype="multipart/form-data" class="my-form" (ngSubmit)="productService.productForm && onSubmit(productService.productForm)" class="mat-elevation-z2">
+<form [formGroup]="editProductForm" enctype="multipart/form-data" class="my-form" (ngSubmit)="editProductForm && onSubmit(editProductForm)" class="mat-elevation-z2">
     <mat-grid-list cols="2" rowHeight="450px" style="display:inherit;">
         <mat-grid-tile>
             <div class="controles-container">
@@ -13,9 +13,8 @@
                 <mat-form-field>
                     <input formControlName="quantity" type="number" matInput placeholder="0">
                 </mat-form-field>
-                <input type="file" formControlName="image" />
-                <!-- <input formControlName="images" type="file" placeholder="re" multiple (change)="selectImage($event)">
-                <mat-error>Rename as "front" and "back" your product images and upload both files</mat-error> -->
+                <input formControlName="images" type="file" placeholder="re" multiple (change)="selectImage($event)">
+                <mat-error>Rename as "front" and "back" your product images and upload both files</mat-error>
                 <mat-form-field>
                     <mat-select formControlName="category" placeholder="Category *" required>
                         <mat-option value="1">Electronics </mat-option>
@@ -26,7 +25,7 @@
 
                 <div>
                     <button mat-stroked-button color="accent" type="reset">Cancel</button> |
-                    <button mat-raised-button color="primary" type="submit" [disabled]="productService.productForm.invalid">Save</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="editProductForm.invalid">Save</button>
                 </div>
             </div>
         </mat-grid-tile>
