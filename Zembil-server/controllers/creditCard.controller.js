@@ -84,7 +84,7 @@ module.exports.getCreditCardDetails = async (req, res, next) => {
 module.exports.makePayment = async (req, res, next) => {
     const creditID = req.body._id;
     const credit = await CreditCard.findById(creditID);
-    var availableBalance = credit.amountInCard + 3000;
+    var availableBalance = credit.amountInCard+3000;
     const totalprice = 50; //cart.totalPrice
     if (!credit) {
         res.status(404).json({ message: 'No card found' });
@@ -96,19 +96,20 @@ module.exports.makePayment = async (req, res, next) => {
         console.log('available balance:' + availableBalance);
         // const  newBalance = cart.user.creditCard.amountInCard - cart.totalPrice; 
         var newBalance = availableBalance - totalprice; //cart.totalPrice
-        console.log('new bLnce: ' + newBalance)
-        // update card balance in data base
-        const result = CreditCard.updateOne({ _id: creditID }, { $inc: { amountInCard: - totalprice } }, function (err, res) {
-            if (!err) {
-                // console.log(res);
-                // res.status(200).json({ message: 'New balance successfully updated in database' })
+        console.log('new balance: ' + newBalance)
+         // update card balance in data base
+    const result = CreditCard.updateOne({ _id: creditID }, { $inc: { amountInCard: - totalprice } }, function (err, res) {
+        if (!err) {
+            console.log(res);
+          //  res.status(200).json({ message: 'New balance successfully updated in database' })
 
-            }
+        }
+    })
 
-        })
         // res.status(200).json({ message: 'you have been charged: '+cart.totalPrice});
         res.status(200).json({ message: 'you have been charged: ' + totalprice + ', remaining amount: ' + availableBalance });
     }
+
 
 }
 
