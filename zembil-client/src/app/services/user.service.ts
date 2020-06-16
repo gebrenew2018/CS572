@@ -41,6 +41,9 @@ export class UserService {
   getUserDetails(){
     return this.http.get(environment.apiBaseUrl+'/users/details')
   }
+  getAllUsers(){
+    return this.http.get(environment.apiBaseUrl+'/users')
+  }
 
   // helper methods 
   setToken(token: string){

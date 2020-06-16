@@ -34,5 +34,7 @@ export class CartComponent implements OnInit {
       itemprice: "$24.0"
     }];
   }
-
+checkout(){
+  this.router.navigate(['users','user-dashbord','checkout']);
+}
 }

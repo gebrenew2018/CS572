@@ -15,7 +15,6 @@ import { TopNavComponent } from './components/shared/top-nav/top-nav.component';
 
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddressComponent } from './components/address/address.component';
-import { PaymentComponent } from './components/checkout/payment/payment.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderStatusComponent } from './components/orders/order-status/order-status.component';
 import { UserService } from './services/user.service';
@@ -29,6 +28,7 @@ import { PageNotFoundComponent } from './components/shared/page-not-found/page-n
 import { InformationComponent } from './components/shared/information/information.component';
 import {MatTableModule} from '@angular/material/table';
 import { ProductService } from './services/product.service';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +38,13 @@ import { ProductService } from './services/product.service';
     FooterComponent,
     TopNavComponent,
     AddressComponent,
-    PaymentComponent,
     OrdersComponent,
     OrderStatusComponent,
     CheckoutComponent,
     AccessDeniedComponent,
     PageNotFoundComponent,
-    InformationComponent
+    InformationComponent,
+    OrderSummaryComponent
   ],
   imports: [
     BrowserModule,
