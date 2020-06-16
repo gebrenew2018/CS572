@@ -17,10 +17,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({
     storage: storage
-}).array('images', 2);
+}).single('image');
 
 
 module.exports.addNewProduct = (req, res, next) => {
+    let user = JSON.parse(localStorage.getItem('user'));
     upload(req, res, (err) => {
         if (err) {
             console.log('Error in image uploading');
@@ -28,25 +29,22 @@ module.exports.addNewProduct = (req, res, next) => {
             const product = new Product({
                 _id: new mongoose.Types.ObjectId(),
                 productName: req.body.productName,
-                frontImage: req.files[1].filename,
-                backImage: req.files[0].filename,
+                image: req.file.filename,
+                // frontImage: req.files[1].filename,
+                // backImage: req.files[0].filename,
                 quantity: req.body.quantity,
                 supplierId: req.body.supplierId,
                 unitPrice: req.body.unitPrice,
                 category: req.body.category,
-                isSold: req.body.isSold
+                isSold: false
             });
             product.save((err, product) => {
                 if (err) {
-                    console.log('Eror');
                     res.status(500).json({ message: 'Error in saving the products = ' + err });
                 } else if (!product) {
-                    console.log('no prod');
                     res.status(404).json({ message: 'Error in fetching the saved product.' });
                 } else {
                     // send email to customers subscribed
-                    console.log(product);
-
                     res.status(200).json({ product: product });
                     // sendmail.send();
                 }

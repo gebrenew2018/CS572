@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: []
 })
 export class LoginComponent implements OnInit {
 
@@ -25,13 +25,11 @@ export class LoginComponent implements OnInit {
   onSubmit(form) {
     this.userService.logInUser(form.value).subscribe(
       res => {
-        console.log('Successfully Logged in!');
         this.userService.setToken(res['token']);
         this.router.navigateByUrl('/users/details')
       },
       err => {
         console.log('Error'+err.error.message);
-        
         this.serverErrorMsg = "";
         // if (err.status === 422) {
         //   // this.serverErrorMessages = err.error.join('<br/>')

@@ -13,4 +13,5 @@ router.get('/:userid', userController.getUserDetails);
 router.get('/:role/:status', userController.getAllUsersByRoleAndStatus);
 router.post('/:userid/:status', userController.changeUserStatus);
 router.post('/:userid', userController.updateUserDetails);
+
 module.exports = router;

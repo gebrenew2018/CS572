@@ -22,6 +22,9 @@ export class SellerDashbordComponent implements OnInit {
   addProduct(){
     this.router.navigateByUrl('/users/seller-dashbord/add-product');
   }
+  gotoOrders(){
+    this.router.navigateByUrl('/users/seller-dashbord/order-list');
+  }
   onLogout(){
     this.userService.deleteToken();
     this.router.navigateByUrl('/users/signin');

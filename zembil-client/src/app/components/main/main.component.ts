@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: []
 })
 export class MainComponent implements OnInit {
   items: Object[];
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.items = [{
@@ -85,7 +86,7 @@ export class MainComponent implements OnInit {
   }
   addTocart(itemid:any){
     console.log(itemid);
-    
+    this.router.navigate(['users','user-dashbord','cart'],{queryParams:{_id:itemid}})
   }
 
 }

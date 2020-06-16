@@ -9,22 +9,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-
+  products:Product[]=[];
   constructor(private http: HttpClient) { }
   noAuthHeader ={headers: new HttpHeaders({'NoAuth':'True'})}
+  selectedProduct:Product;
 productForm:FormGroup= new FormGroup({
-  $key : new FormControl(null),
+  _id : new FormControl(null),
   productName: new FormControl('',Validators.required),
   unitPrice: new FormControl('',Validators.required),
   quantity: new FormControl('',Validators.required),
   category: new FormControl('',Validators.required),
-  images: new FormControl('',Validators.required),
+  image: new FormControl('',Validators.required),
 })
-  loadProducts(){
-    return this.http.get(environment.apiBaseUrl+'/products'); 
+  loadProducts():Observable<Product[]>{
+    return this.http.get<Product[]>(environment.apiBaseUrl+'/products'); 
   }
-  postProduct(product:Product):Observable<any>{
-    console.log(product);
+  postProduct(product:Product){
     return this.http.post(environment.apiBaseUrl+'/products/add-product',product);
+  } 
+  updateProduct(product:Product){
+    return this.http.put(environment.apiBaseUrl+'/products/update',product);
   }
 }
