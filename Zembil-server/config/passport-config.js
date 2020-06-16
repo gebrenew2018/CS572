@@ -9,9 +9,9 @@ passport.use(
         (username, password, done) => {
             User.findOne({ email: username },
                 (err, user) => {
-                    if (err)
+                    if (err) {
                         return done(err);
-                    else if (!user)
+                    } else if (!user)
                         return done(null, false, { message: 'Email address is not registered!' });
                     else if (!user.verifyPassword(password))
                         return done(null, false, { message: 'Incorrect password' });

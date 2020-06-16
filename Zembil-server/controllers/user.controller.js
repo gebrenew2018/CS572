@@ -46,6 +46,7 @@ module.exports.getAll = (req, res, next) => {
 module.exports.getUserDetails = (req, res, next) => {
     User.findById(req.params.userid, (err, user) => {
         if (!user) {
+            console.log('User not found');
             res.status(500).json({ message: 'user not found' });
         } else {
             res.status(200).json({ status: true, user: _.pick(user, ['_id', 'firstName', 'lastName', 'telephone', 'role', 'email']) });
@@ -77,7 +78,7 @@ module.exports.changeUserStatus = (req, res, next) => {
     }
     // update user details by user _id
 module.exports.updateUserDetails = (req, res, next) => {
-    var user = {
+    var newUserdetail = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         telephone: req.body.telephone,
@@ -87,12 +88,13 @@ module.exports.updateUserDetails = (req, res, next) => {
     }
     User.findById(req.params.userid, (err, user) => {
         if (!err) {
-            user.firstName = req.body.firstName,
-                user.lastName = req.body.lastName,
-                user.telephone = req.body.telephone,
-                user.email = req.body.email,
-                user.password = req.body.password,
-                user.role = req.body.role
+            console.log(user);
+            user.firstName = newUserdetail.firstName;
+            user.lastName = newUserdetail.lastName;
+            user.telephone = newUserdetail.telephone;
+            user.email = newUserdetail.email;
+            user.password = newUserdetail.password;
+            user.role = newUserdetail.role;
             user.save((err, doc) => {
                 if (!err) {
                     res.status(200).json({ user: doc });
@@ -115,7 +117,7 @@ module.exports.authenticate = (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) return res.status(400).json(err);
         else if (user) res.status(200).json({ "token": user.generateJwt() });
-        else return res.status(404).json(info);
+        else return res.status(404).json({ message: info });
     })(req, res);
 }
 
@@ -124,6 +126,8 @@ module.exports.userProfile = (req, res, next) => {
         (err, user) => {
             if (!user)
                 return res.status(404).json({ status: false, message: 'User record not found.' })
-            else return res.status(200).json({ status: true, user: _.pick(user, ['firstName', 'lastName', 'email']) }); // send the necessary information not the whole user data
+            else {
+                return res.status(200).json({ status: true, user: _.pick(user, ['_id', 'firstName', 'lastName', 'email', 'role', 'status']) }); // send the necessary information not the whole user data
+            }
         })
 }

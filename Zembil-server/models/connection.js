@@ -9,4 +9,5 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 });
 
 require('./user.model')
-    // require('./product.model')
+require('./product.model')
+require('./review.model');

@@ -3,34 +3,15 @@ const router = express.Router();
 
 const productController = require('../controllers/product.controller');
 const jwtHelper = require('../config/jwtHelper');
-const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './uploads/');
-    },
-    filename: function(req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname);
-    }
-});
-const filetype = (req, file, cb) => {
-        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-            cb(null, true);
-        } else {
-            cb(null, true);
-        }
+// image upload
 
-    }
-    // const upload = multer({ dest: 'uploads/', limits: { fileSize: 1024 * 1024 * 5 }, fileFilter: filetype })
+// router.post('/add-product', productController.addNewProduct);
+router.get('/', productController.getAllProducts);
+router.post('/add-product', productController.addNewProduct);
+router.put('/update/:productid', productController.updateProductDetails);
+router.delete('/delete/:productid', productController.deleteProduct);
+router.get('/:productid', productController.getProductDetails);
+router.put('/update-quantity/:productid', productController.updateQuantity);
 
-
-const upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 1024 * 1024 * 5
-    },
-    fileFilter: filetype
-})
-
-router.post('/add-product', jwtHelper.verifyJwtToken, upload.single('imageUrl'), productController.addNewProduct);
 
 module.exports = router;
