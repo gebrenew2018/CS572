@@ -13,14 +13,17 @@
                 <mat-form-field>
                     <input formControlName="quantity" type="number" matInput placeholder="0">
                 </mat-form-field>
-                <input type="file" formControlName="image" />
-                <!-- <input formControlName="images" type="file" placeholder="re" multiple (change)="selectImage($event)">
+                <mat-form-field>
+                    <input formControlName="imageUrl" type="text" matInput placeholder="Enter image URL">
+                </mat-form-field>
+                <!-- <input type="file" formControlName="image" /> -->
+                <!-- <input formControlName="image" type="file" multiple (change)="fileChange($event)">
                 <mat-error>Rename as "front" and "back" your product images and upload both files</mat-error> -->
                 <mat-form-field>
                     <mat-select formControlName="category" placeholder="Category *" required>
-                        <mat-option value="1">Electronics </mat-option>
-                        <mat-option value="2">Clothes </mat-option>
-                        <mat-option value="3">Mobiles </mat-option>
+                        <mat-option value="Electronics">Electronics </mat-option>
+                        <mat-option value="Clothes">Clothes </mat-option>
+                        <mat-option value="Mobiles">Mobiles </mat-option>
                     </mat-select>
                 </mat-form-field>
 

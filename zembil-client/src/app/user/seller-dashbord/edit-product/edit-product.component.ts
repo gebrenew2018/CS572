@@ -23,7 +23,7 @@ export class EditProductComponent implements OnInit {
     unitPrice: this.productService.selectedProduct.unitPrice,
     quantity: this.productService.selectedProduct.quantity,
     category: '',
-    images:''
+    imageUrl:this.productService.selectedProduct.imageUrl
 })
   } 
   initForm(){
@@ -33,7 +33,7 @@ export class EditProductComponent implements OnInit {
       unitPrice: new FormControl('',Validators.required),
       quantity: new FormControl('',Validators.required),
       category: new FormControl('',Validators.required),
-      images: new FormControl('',Validators.required),
+      imageUrl: new FormControl('',Validators.required),
     })
   }
    selectImage(event){

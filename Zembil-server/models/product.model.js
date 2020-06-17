@@ -10,8 +10,9 @@ var productSchema = new Schema({
         type: String,
         required: [true, 'Product name cannot be empty']
     },
-    image: {
-        type: String
+    imageUrl: {
+        type: String,
+        required: [true, 'Product name cannot be empty']
     },
     // frontImage: {
     //     type: String,
@@ -35,7 +36,7 @@ var productSchema = new Schema({
         required: [true, 'Unit price cannot be empty.']
     },
     category: {
-        type: Number,
+        type: String,
         required: 'Category cannot be empty.'
     },
     review: {

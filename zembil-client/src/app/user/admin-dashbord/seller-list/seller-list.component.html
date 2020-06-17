@@ -1,38 +1,27 @@
 <mat-table [dataSource]="dataSource" class="mat-elevation-z2" matSort>
-    <ng-container matColumnDef="productName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.productName}} </mat-cell>
+    <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="unitPrice">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Unit Price </mat-header-cell>
-        <mat-cell *matCellDef="let element"> ${{element.unitPrice}} </mat-cell>
+    <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="quantity">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="category">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="isSold">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Sold? </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.isSold}} </mat-cell>
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.status}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <button mat-icon-button><mat-icon>edit</mat-icon></button>
-            <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+            <button mat-icon-button (click)="approve(element)"><mat-icon>check_box</mat-icon></button>
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="loading">
         <mat-footer-cell *matFooterCellDef colspan="6">
-            Loading products ...
+            Loading sellers ...
         </mat-footer-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

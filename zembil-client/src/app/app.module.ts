@@ -21,8 +21,8 @@ import { UserService } from './services/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.intercepter';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import {NgxPaginationModule} from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 import { AccessDeniedComponent } from './components/shared/access-denied/access-denied.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { InformationComponent } from './components/shared/information/information.component';
@@ -56,8 +56,8 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
     ReactiveFormsModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
-    NgxPaginationModule,
-    MatTableModule
+    MatTableModule,
+    ToastrModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
