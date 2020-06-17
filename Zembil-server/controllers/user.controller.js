@@ -4,6 +4,7 @@ const passport = require('passport');
 const _ = require('lodash'); // to pass some data of the user model
 
 module.exports.register = (req, res, next) => {
+        console.log(req.body.address[0]);
 
         var user = new User({
             _id: new mongoose.Types.ObjectId(),
@@ -13,7 +14,8 @@ module.exports.register = (req, res, next) => {
             email: req.body.email,
             password: req.body.password,
             role: req.body.role,
-            status: 1
+            address: req.body.address[0],
+            status: "New"
         });
 
         user.save((err, doc) => {
