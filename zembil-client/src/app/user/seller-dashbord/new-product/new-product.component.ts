@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: []
 })
 export class NewProductComponent implements OnInit {
-
+  uploadedFiles: Array < File > ;
   constructor(public productService:ProductService,private router:Router) { }
    user;
 
@@ -19,9 +19,13 @@ export class NewProductComponent implements OnInit {
       this.router.navigate(['users','signin'])
     }
   }
+  // fileChange(element) {
+  //   this.uploadedFiles = element.target.files;
+  //   }
   onSubmit(productform){
-    this.productService.postProduct(productform.value).subscribe(res=>{
-      console.log(res);      
+    // const formData = new FormData();
+    // formData.append('image', this.productService.productForm.get('image').value);
+    this.productService.postProduct(this.user._id,productform.value).subscribe(res=>{
       this.router.navigate(['users','seller-dashbord','product-list'])
     })
   }

@@ -6,5 +6,5 @@ export class Product {
     quantity :number;
     category: number;
     isSold:number;
-    image:File;
+    imageUrl:string;
 }

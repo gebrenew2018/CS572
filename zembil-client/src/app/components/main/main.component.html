@@ -1,24 +1,23 @@
 <section class="sec1">
     <div class="row" style="padding-top: 20px;">
-
-        <div class="col-md-3 col-sm-6" *ngFor="let item of items">
+        <div class="col-md-3 col-sm-6" *ngFor="let item of itemss">
             <div class="product-grid">
                 <div class="product-image">
                     <a href="#">
-                        <img class="pic-1" src="{{item.itemImage1}}" alt="i-phone">
-                        <img class="pic-2" src="{{item.itemImage2}}" alt="i-phone2">
+                        <img class="pic-1" src="{{item.imageUrl}}" alt="i-phone">
+                        <img class="pic-2" src="{{item.imageUrl}}" alt="i-phone2">
                     </a>
                     <span class="product-trend-label">
-                        {{item.trending}}
+                        {{trending}}
                     </span>
                     <ul class="social">
-                        <li><button (click)="addTocart(item.itemid)" data-tip="Add to cart"><i class="fa fa-shopping-cart">Add to cart</i></button></li>
-                        <li> <button (click)="addTocart(item.itemid)" data-tip="Quick view"><i class="fa fa-search">Quick view</i></button></li>
+                        <li><button (click)="addTocart(item)" data-tip="Add to cart"><i class="fa fa-shopping-cart">Add to cart</i></button></li>
+                        <li> <button (click)="addTocart(item._id)" data-tip="Quick view"><i class="fa fa-search">Quick view</i></button></li>
                     </ul>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"> <a href="#">{{item.itemname}}</a></h3>
-                    <div class="price"> {{item.itemprice}}</div>
+                    <h3 class="title"> <a href="#">{{item.productName}}</a></h3>
+                    <div class="price"> {{item.unitPrice}}</div>
                 </div>
             </div>
         </div>

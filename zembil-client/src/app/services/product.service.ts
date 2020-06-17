@@ -19,15 +19,21 @@ productForm:FormGroup= new FormGroup({
   unitPrice: new FormControl('',Validators.required),
   quantity: new FormControl('',Validators.required),
   category: new FormControl('',Validators.required),
-  image: new FormControl('',Validators.required),
+  imageUrl: new FormControl('',Validators.required),
 })
-  loadProducts():Observable<Product[]>{
-    return this.http.get<Product[]>(environment.apiBaseUrl+'/products'); 
+  loadProducts(userid:string):Observable<Product[]>{
+    return this.http.get<Product[]>(environment.apiBaseUrl+'/products/'+userid); 
   }
-  postProduct(product:Product){
-    return this.http.post(environment.apiBaseUrl+'/products/add-product',product);
+  loadAllProducts(){
+    return this.http.get(environment.apiBaseUrl+'/products'); 
+  }
+  postProduct(userid:string, product:any){ 
+    return this.http.post(environment.apiBaseUrl+'/products/add-product/'+userid,product);
   } 
   updateProduct(product:Product){
-    return this.http.put(environment.apiBaseUrl+'/products/update',product);
+    return this.http.put(environment.apiBaseUrl+'/products/update/'+product._id,product);
+  }
+  deleteProduct(productid:string){
+    return this.http.delete(environment.apiBaseUrl+'/products/delete/'+productid);
   }
 }

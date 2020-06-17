@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import { User } from '../models/user.model'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { USER_STATUS } from 'src/@shop/const/consts';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +25,7 @@ export class UserService {
     password: new FormControl('', Validators.required),
     role: new FormControl(0)
   });
-
+  
   loginForm:FormGroup = new FormGroup({
     email: new FormControl('',Validators.email),
     password: new FormControl('', Validators.required)
@@ -42,8 +43,12 @@ export class UserService {
     return this.http.get(environment.apiBaseUrl+'/users/details')
   }
   getAllUsers(){
-    return this.http.get(environment.apiBaseUrl+'/users')
+    return this.http.get(environment.apiBaseUrl+'/users/3/New')
   }
+  approveSeller(userId:string,user:any){
+    return this.http.post(environment.apiBaseUrl+'/users/'+userId+'/Active',user)
+  }
+
 
   // helper methods 
   setToken(token: string){

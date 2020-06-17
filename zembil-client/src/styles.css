@@ -130,8 +130,9 @@ nav ul li a.active {
 }
 
 .product-grid .product-image img {
-    width: 100%;
-    height: auto;
+    width: 200px;
+    height: 230px;
+    text-align: center;
 }
 
 .product-image .pic-1 {

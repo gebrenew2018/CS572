@@ -7,6 +7,7 @@ import { MainComponent } from 'src/app/components/main/main.component';
 import { CartComponent } from 'src/app/components/cart/cart.component';
 import { CheckoutComponent } from 'src/app/components/checkout/checkout.component';
 import { OrderSummaryComponent } from 'src/app/components/order-summary/order-summary.component';
+import { AddressComponent } from 'src/app/components/address/address.component';
 
 export const buyerRoutes : Routes=[
   {path:'',component:UserDashbordComponent,
@@ -15,7 +16,9 @@ children:[
   {path: 'my-orders',component:OrderListComponent },
   {path: 'cart',component:CartComponent },
   {path:'checkout',component:CheckoutComponent},
-  {path:'order-summary',component:OrderSummaryComponent}
+  {path:'order-summary',component:OrderSummaryComponent},
+  {path:'shipping-address',component:AddressComponent},
+  {path:'billing-address',component:AddressComponent}
 ]}
 ]
 
