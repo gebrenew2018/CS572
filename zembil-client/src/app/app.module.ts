@@ -29,6 +29,10 @@ import { InformationComponent } from './components/shared/information/informatio
 import {MatTableModule} from '@angular/material/table';
 import { ProductService } from './services/product.service';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,10 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
     NoopAnimationsModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatInputModule,
+    MatButtonModule,
     ToastrModule.forRoot()
   ],
   providers: [{

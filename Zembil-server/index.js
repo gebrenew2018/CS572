@@ -10,7 +10,8 @@ const passport = require('passport'); // for authentication
 const rtsUser = require('./routes/user.router');
 const rtsProduct = require('./routes/product.router');
 const rtsCart = require('./routes/cart.router');
-const rtsOrder=require('./routes/order.router');
+const rtsOrder = require('./routes/order.router');
+const rtsAddress = require('./routes/address.router');
 
 const rtsCreditCard = require('./routes/creditCard.router'); // from mihreteab
 
@@ -28,9 +29,9 @@ app.use(cookieParser());
 app.use('/api/v1/users', rtsUser);
 app.use('/api/v1/products', rtsProduct);
 app.use('/api/v1/cart', rtsCart);
-app.use('/api/v1/orders',rtsOrder);
-
-app.use('/api/v1/creditCards', rtsCreditCard); 
+app.use('/api/v1/orders', rtsOrder);
+app.use('/api/v1/address', rtsAddress)
+app.use('/api/v1/creditCards', rtsCreditCard);
 
 
 

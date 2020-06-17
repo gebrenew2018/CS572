@@ -25,7 +25,7 @@ export class UserService {
     password: new FormControl('', Validators.required),
     role: new FormControl(0)
   });
-
+  
   loginForm:FormGroup = new FormGroup({
     email: new FormControl('',Validators.email),
     password: new FormControl('', Validators.required)

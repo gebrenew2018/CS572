@@ -1,12 +1,15 @@
 <button mat-button [matMenuTriggerFor]="belowMenu">Profile</button>
 <mat-menu #belowMenu="matMenu" yPosition="below">
     <button mat-menu-item>
+        <mat-icon>edit</mat-icon> Edit profile
+    </button>
+    <button mat-menu-item (click)="shippingAddress() ">
         <mat-icon>add</mat-icon> Shipping Address
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="billingAddress() ">
         <mat-icon>add</mat-icon> Billing Address</button>
 </mat-menu>
-<button mat-button (click)="myOrders()">Orders</button>
+<button mat-button (click)="myOrders() ">Orders</button>
 
-<button mat-button (click)="onLogout()">Logout</button>
+<button mat-button (click)="onLogout() ">Logout</button>
 <router-outlet></router-outlet>

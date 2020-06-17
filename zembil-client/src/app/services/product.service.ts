@@ -24,6 +24,9 @@ productForm:FormGroup= new FormGroup({
   loadProducts(userid:string):Observable<Product[]>{
     return this.http.get<Product[]>(environment.apiBaseUrl+'/products/'+userid); 
   }
+  loadAllProducts(){
+    return this.http.get(environment.apiBaseUrl+'/products'); 
+  }
   postProduct(userid:string, product:any){ 
     return this.http.post(environment.apiBaseUrl+'/products/add-product/'+userid,product);
   } 

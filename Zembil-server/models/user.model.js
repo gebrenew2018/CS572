@@ -37,6 +37,10 @@ var userSchema = new mongoose.Schema({
     },
     status: {
         type: String
+    },
+    address: {
+        type: String,
+        ref: "Address"
     }
 });
 

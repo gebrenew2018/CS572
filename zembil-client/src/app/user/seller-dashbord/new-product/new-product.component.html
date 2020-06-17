@@ -9,12 +9,15 @@
                 </mat-form-field>
                 <mat-form-field>
                     <input formControlName="unitPrice" type="number" matInput placeholder="0.00">
+                    <mat-error>UnitPrice cannot be empty!</mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <input formControlName="quantity" type="number" matInput placeholder="0">
+                    <mat-error>Quantity cannot be empty!</mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <input formControlName="imageUrl" type="text" matInput placeholder="Enter image URL">
+                    <mat-error>ImageUrl cannot be empty!</mat-error>
                 </mat-form-field>
                 <!-- <input type="file" formControlName="image" /> -->
                 <!-- <input formControlName="image" type="file" multiple (change)="fileChange($event)">
@@ -25,6 +28,7 @@
                         <mat-option value="Clothes">Clothes </mat-option>
                         <mat-option value="Mobiles">Mobiles </mat-option>
                     </mat-select>
+                    <mat-error>Select Category!</mat-error>
                 </mat-form-field>
 
                 <div>
