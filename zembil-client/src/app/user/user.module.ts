@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user-routing.module';
+import { CommonModule } from '@angular/common';
+
 // material modules
 
 
@@ -19,10 +21,10 @@ import { DeliveryDashbordComponent } from './delivery-dashbord/delivery-dashbord
 
 @NgModule({
     imports: [
-        UserRoutingModule,
+UserRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        MaterialModule
+        MaterialModule,CommonModule
 ],
     exports: [],
     declarations: [

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CartService } from '../../services/cart.service';
+
 
 @Component({
   selector: 'app-main',
@@ -8,7 +10,12 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
   items: Object[];
-  constructor(private router: Router) { }
+  serverErrorMessages: string;
+ cart:any;
+
+
+
+  constructor(private cartService:CartService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.items = [{
@@ -86,7 +93,15 @@ export class MainComponent implements OnInit {
   }
   addTocart(itemid:any){
     console.log(itemid);
-    this.router.navigate(['users','user-dashbord','cart'],{queryParams:{_id:itemid}})
+    itemid='5ee4f44cd97c00047ef2bd48';
+  const cart=  this.cartService.addToCart(itemid).subscribe(res=>{
+
+      console.log(res);
+
+    });
+
+   // this.router.navigate(['users','user-dashbord','cart'],{queryParams:{_id:itemid}})
+
   }
 
 }

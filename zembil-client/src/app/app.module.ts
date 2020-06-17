@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+
 // components  imports
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
@@ -21,7 +22,6 @@ import { UserService } from './services/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.intercepter';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import {NgxPaginationModule} from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
 import { AccessDeniedComponent } from './components/shared/access-denied/access-denied.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
@@ -47,7 +47,7 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
     OrderSummaryComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
@@ -56,7 +56,6 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
     ReactiveFormsModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
-    NgxPaginationModule,
     MatTableModule
   ],
   providers: [{

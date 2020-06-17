@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { Observable } from 'rxjs';
+import { CartService } from '../../services/cart.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cart',
-  templateUrl: './cart.component.html',
+  templateUrl:'./cart.component.html',
   styleUrls: []
 })
 export class CartComponent implements OnInit {
   items: Object[];
   id;
-  constructor(private userService:UserService,private router:Router, private route: ActivatedRoute) {
+  fItem='me';
+  constructor(private http:HttpClient, private cartService: CartService, private userService:UserService,private router:Router, private route: ActivatedRoute) {
     route.queryParams.subscribe( params => { this.id = params['_id']; });
    }
 
   ngOnInit() {
     if(!this.userService.isLoggedIn())
     this.router.navigateByUrl('/users/signin');
+   this.getAllCartItems();
     this.items = [{
       itemid: 1,
       trending:"Trending",
@@ -34,7 +40,25 @@ export class CartComponent implements OnInit {
       itemprice: "$24.0"
     }];
   }
+  getAllCartItems() {
+    this.cartService.getCartItems().subscribe(res=>{
+      console.log(res);
+    });
+
+    }
 checkout(){
   this.router.navigate(['users','user-dashbord','checkout']);
+}
+minusOne(id){
+
+}
+onChange(item){
+
+}
+addOne(productInOrder){
+
+}
+remove(item){
+
 }
 }

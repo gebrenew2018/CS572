@@ -14,6 +14,22 @@ module.exports = function Cart(oldCart) {
         this.totalQuantity += 1;
         this.totalPrice += storedItem.item.unitPrice;
     };
+    this.deleteOneProductFromCart = function(id) {
+        this.items[id].quantity--;
+        this.items[id].unitPrice -= this.items[id].item.unitPrice;
+        this.totalQuantity--;
+        this.totalPrice -= this.items[id].item.unitPrice;
+        if (this.items[id].quantity <= 0) {
+            delete this.items[id];
+        }
+    }
+    this.removeItem = function(id) {
+        if (this.items[id]) {
+            this.totalQuantity -= this.items[id].quantity;
+            this.totalPrice -= this.items[id].unitPrice;
+            delete this.items[id];
+        }
+    }
     this.generateArray = function() {
         var arr = [];
         for (let id in this.items) {
