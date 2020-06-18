@@ -1,1 +1,46 @@
-<p>Buyers' order-list works!</p>
+<h3> Ordered Items</h3>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z2" matSort>
+    <ng-container matColumnDef="orderId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> OrderId </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element._id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="items">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Item Details </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <ul type="none">
+                <li *ngFor="let item of element.items">
+                    <img src="{{item.imageUrl}}" width="200px" height="100px"> <br>
+                    <b>{{item.productName}}</b> <br>
+                    <b>Price:</b> $ {{item.unitPrice}} <br>
+                    <b>Quantity:</b>{{item.quantity}} <br>
+                    <b>Subtotal:</b>{{item.quantity*item.unitPrice}}<br></li>
+            </ul>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalPrice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Total Price </mat-header-cell>
+        <mat-cell *matCellDef="let element"> ${{element.totalPrice}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="orderedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Ordered Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.orderDate}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <h4 style="background-color: rgba(9, 107, 9, 0.582);">{{element.status}}</h4>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <button mat-raised-button color="warn" (click)="onCancel(element._id)">Cancel</button>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
 import { Cart } from 'src/app/models/cart.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-main',
@@ -11,28 +12,31 @@ import { Cart } from 'src/app/models/cart.model';
 })
 export class MainComponent implements OnInit {
   items: Object[];
-  products:any;
-  itemss:Object[];
-  trending="New"
+  products: any;
+  itemss: Object[];
+  trending = "New"
   userid;
-  constructor(private router: Router,private productService: ProductService) { }
+  constructor(private router: Router, private userService: UserService, private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productService.loadAllProducts().subscribe(res=>{
+    this.productService.loadAllProducts().subscribe(res => {
       console.log(res);
-      this.products=res;
-      this.itemss=this.products.products;   
+      this.products = res;
+      this.itemss = this.products.products;
       console.log(this.itemss);
-         
+
     });
   }
-  addTocart(item){
-    let user = JSON.parse(localStorage.getItem('user'));
-    this.userid = user._id;
-    this.productService.addToCart(this.userid,item).subscribe(res=>{
-      console.log(res);
-    });
-    // this.router.navigate(['users','user-dashbord','cart'],{queryParams:{_id:itemid}})
+  addTocart(item) {
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigateByUrl('/users/signin');
+    } else {
+      let user = JSON.parse(localStorage.getItem('user'));
+      this.userid = user._id;
+      this.productService.addToCart(this.userid, item).subscribe(res => {
+        console.log(res);
+      });
+    }
   }
 
 }
