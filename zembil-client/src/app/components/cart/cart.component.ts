@@ -10,10 +10,10 @@ import { Cart } from 'src/app/models/cart.model';
   styleUrls: []
 })
 export class CartComponent implements OnInit {
-
-  items: Array<any>;
-  cartItems: any;
-  id;
+total:any;
+  cartItems:any;
+  items:Array<any>;
+ id;
   userid;
   sample: Array<any>;
   constructor(private userService: UserService, private productService: ProductService, private router: Router, private route: ActivatedRoute) {
@@ -21,21 +21,36 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.userService.isLoggedIn()) {
-      this.router.navigateByUrl('/users/signin');
-    } else {
-      let user = JSON.parse(localStorage.getItem('user'));
-      this.userid = user._id;
-      console.log(this.userid);
-      this.productService.getCart(this.userid).subscribe((res: any[]) => {
-        this.cartItems = res;
-        this.items = this.cartItems.cart;
 
-        localStorage.setItem('order', JSON.stringify(this.cartItems.cart))
-      })
-    }
+    if(!this.userService.isLoggedIn())
+    this.router.navigateByUrl('/users/signin');
+    let user = JSON.parse(localStorage.getItem('user'));
+    this.userid = user._id;
+
+    this.productService.getCart(this.userid).subscribe((res:any[])=>{
+      console.log(res);
+      this.cartItems=res;
+      this.items=this.cartItems.cart;
+      this.total=this.cartItems.total;
+      console.log(this.cartItems);
+
+      localStorage.setItem('order',JSON.stringify(this.cartItems.cart))
+    })
+
+
   }
-  checkout() {
-    this.router.navigate(['users', 'user-dashbord', 'checkout']);
-  }
+
+checkout(){
+  this.router.navigate(['users','user-dashbord','checkout']);
+}
+removeFromCart(item){
+  console.log(item);
+
+  let user = JSON.parse(localStorage.getItem('user'));
+  this.userid = user._id;
+  this.productService.removeFromCart(this.userid,item).subscribe(res=>{
+    console.log(res);
+this.ngOnInit()
+});
+}
 }
