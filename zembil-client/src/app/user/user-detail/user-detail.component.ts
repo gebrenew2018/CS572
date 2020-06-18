@@ -19,7 +19,7 @@ export class UserDetailComponent implements OnInit {
       res => {
         console.log(res['user']);
         localStorage.setItem('user',JSON.stringify(res['user']));
-        if(res['user'].role == 1 && (res['user'].status ==1 || res['user'].status ==2)){
+        if(res['user'].role == 1){
           this.router.navigateByUrl('/users/admin-dashbord');
         } else if(res['user'].role == 2){
           this.router.navigateByUrl('/users/user-dashbord');

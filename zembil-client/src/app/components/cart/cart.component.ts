@@ -21,32 +21,18 @@ export class CartComponent implements OnInit {
    }
 
   ngOnInit() {
-  //   this.sample =[
-  //     {
-  //     name:"gebrsdfsdfe",
-  //     age:20
-  //     },
-  //     {
-  //       name:"gesdfsdfbre",
-  //       age:12
-  //       },
-  //       {
-  //         name:"sdfsf",
-  //         age:23
-  //         },
-  // ]
-    if(!this.userService.isLoggedIn())
-    this.router.navigateByUrl('/users/signin');
-    let user = JSON.parse(localStorage.getItem('user'));
+    if(!this.userService.isLoggedIn()){
+          this.router.navigateByUrl('/users/signin');
+    }else{
+      let user = JSON.parse(localStorage.getItem('user'));
     this.userid = user._id;
-
+console.log(this.userid);
     this.productService.getCart(this.userid).subscribe((res:any[])=>{
       this.cartItems=res; 
       this.items=this.cartItems.cart;
       localStorage.setItem('order',JSON.stringify(this.cartItems.cart))
     })
-    
-
+    }
   }
 checkout(){
   this.router.navigate(['users','user-dashbord','checkout']);

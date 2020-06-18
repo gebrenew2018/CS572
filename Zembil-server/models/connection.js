@@ -13,3 +13,4 @@ require('./product.model')
 require('./review.model')
 require('./address.model');
 require('./Shoppingcart.model')
+require('./order.model')
