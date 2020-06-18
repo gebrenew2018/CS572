@@ -59,6 +59,8 @@ export class UserService {
   }
 deleteToken(){
   localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  localStorage.removeItem('order');
 }
 getUserpayload(){
   var token = this.getToken();

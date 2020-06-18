@@ -22,11 +22,12 @@ module.exports.addAddress = (req, res, next) => {
     }
     // get address
 module.exports.getAddress = (req, res, next) => {
+    console.log('inside adderss')
     Address.find({ user: req.params.userid, addressType: req.params.addressType }, (err, address) => {
         if (!address) {
             res.send({ message: 'Address not found' });
         } else {
-            res.status(200).json({ status: true, address: address });
+            res.send({ address: address });
         }
     })
 }

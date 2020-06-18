@@ -16,26 +16,15 @@ export class RegistrationComponent implements OnInit {
   emailRegExp = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
   serverErrorMessages: string;
 
-  roless :Object[];
-  roles : RolesModel[]=[];
   constructor(public userService: UserService, private router: Router) { }
   
   ngOnInit() {
-    this.roless=[{Id:1, Description:'Seller'},
-  {Id: 2, Description:'Buyer'}];
-    this.initStaticData();
+
   }
-initStaticData(){
-let userRoles : RolesModel = new RolesModel();
-ROLES.forEach(pair =>{
-  userRoles={
-    'Id':pair.Id.toString(),
-    'Description':pair.Description
-  };
-  this.roles.push(userRoles);
-})
-}
-  onSubmit(form) {
+
+  onSubmit(form:any) {
+    console.log(form.value);
+    
     this.userService.postUser(form.value).subscribe(
       res => {
         console.log('Successfully saved!');
