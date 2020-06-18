@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Product } from '../models/product.model';
 import { Observable } from 'rxjs';
+import { Cart } from '../models/cart.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,11 @@ productForm:FormGroup= new FormGroup({
   }
   deleteProduct(productid:string){
     return this.http.delete(environment.apiBaseUrl+'/products/delete/'+productid);
+  }
+  addToCart(userid,item){
+    return this.http.post(environment.apiBaseUrl+'/cart/add-to-cart/'+userid,item,this.noAuthHeader);
+  }
+  getCart(userid){
+    return this.http.get(environment.apiBaseUrl+'/cart/'+userid,this.noAuthHeader);
   }
 }
