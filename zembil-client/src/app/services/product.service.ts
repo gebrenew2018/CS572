@@ -43,4 +43,7 @@ productForm:FormGroup= new FormGroup({
   getCart(userid){
     return this.http.get(environment.apiBaseUrl+'/cart/'+userid,this.noAuthHeader);
   }
+  postOrder(userid:any,order:any){
+    return this.http.post(environment.apiBaseUrl+"/orders/"+userid,order);
+  }
 }
