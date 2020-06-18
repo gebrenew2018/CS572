@@ -45,7 +45,12 @@ var orderSchema = new Schema({
     },
     deliveryDate: {
         type: Date
+    },
+    status: {
+        type: String
     }
 
 });
+
+
 mongoose.model('Order', orderSchema);
