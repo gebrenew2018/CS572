@@ -33,6 +33,7 @@ import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { MatButtonModule } from '@angular/material/button';
     AccessDeniedComponent,
     PageNotFoundComponent,
     InformationComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -60,12 +62,12 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     MatTableModule,
     MatFormFieldModule,
     MatGridListModule,
     MatInputModule,
     MatButtonModule,
-    ToastrModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

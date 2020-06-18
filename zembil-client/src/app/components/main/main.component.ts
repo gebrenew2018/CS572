@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
 import { Cart } from 'src/app/models/cart.model';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-main',
@@ -16,7 +17,7 @@ export class MainComponent implements OnInit {
   itemss: Object[];
   trending = "New"
   userid;
-  constructor(private router: Router, private userService: UserService, private productService: ProductService) { }
+  constructor(private tost:ToastrService, private router: Router, private userService: UserService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.productService.loadAllProducts().subscribe(res => {
@@ -24,17 +25,20 @@ export class MainComponent implements OnInit {
       this.products = res;
       this.itemss = this.products.products;
       console.log(this.itemss);
-
     });
   }
   addTocart(item) {
     if (!this.userService.isLoggedIn()) {
       this.router.navigateByUrl('/users/signin');
+      this.tost.error('Please Login first for online shopping.', 
+      'Zembil Online shopping')
     } else {
       let user = JSON.parse(localStorage.getItem('user'));
       this.userid = user._id;
-      this.productService.addToCart(this.userid, item).subscribe(res => {
-        console.log(res);
+      this.productService.addToCart(this.userid, item).subscribe((res:any) => {
+        console.log(res.message);
+        this.tost.success('Item Successfully added to cart.', 
+        'Zembil Online shopping')
       });
     }
   }
