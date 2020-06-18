@@ -1,16 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 var reviewSchema = new Schema({
-    user: {
+    _id: {
         type: String
     },
+
     product: {
-        type: String,
-        ref: 'User',
-        required: 'User is required.'
-    },
-    comment: [{
         type: String
+    },
+    reviews: [{
+        user: {
+            type: String
+        },
+        comment: {
+            type: String
+        }
+
     }]
 });
 mongoose.model('Review', reviewSchema);

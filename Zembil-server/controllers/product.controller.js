@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 var sendmail = require('../config/mailSender');
 const Product = mongoose.model('Product');
+const Review = mongoose.model('Review');
 
 const path = require('path');
 const multer = require('multer');
@@ -141,21 +142,79 @@ module.exports.updateProductDetails = (req, res, next) => {
     });
 }
 module.exports.updateQuantity = (req, res, next) => {
-    var newProductDetail = {
-        quantity: req.body.quantity,
-        unitPrice: req.body.unitPrice
-    }
-    Product.findByIdAndUpdate(req.params.productid, {
-            $inc: { quantity: newProductDetail.quantity },
-            unitPrice: newProductDetail.unitPrice
-        }, { new: true },
-        (err, product) => {
+        var newProductDetail = {
+            quantity: req.body.quantity,
+            unitPrice: req.body.unitPrice
+        }
+        Product.findByIdAndUpdate(req.params.productid, {
+                $inc: { quantity: newProductDetail.quantity },
+                unitPrice: newProductDetail.unitPrice
+            }, { new: true },
+            (err, product) => {
 
-            if (!err) {
-                res.status(200).json({ product: product });
-            } else if (!product) {
-                res.status(404).json({ message: 'There is no product with the id provided.' })
-            } else
-                res.status(500).json({ message: 'Unable to update the product details.' })
+                if (!err) {
+                    res.status(200).json({ product: product });
+                } else if (!product) {
+                    res.status(404).json({ message: 'There is no product with the id provided.' })
+                } else
+                    res.status(500).json({ message: 'Unable to update the product details.' })
+            });
+    }
+    //product review routes
+
+module.exports.addNewReview = async(req, res, next) => {
+    console.log('in add review');
+
+    const user = req.params.userid;
+    const prodid = req.body.product;
+    console.log(user);
+    console.log(req.body.comment);
+
+    const myComment = req.body.comment
+
+    const newReview = new Review({
+        _id: new mongoose.Types.ObjectId(),
+        product: prodid,
+        reviews: [{
+            user: user,
+            comment: myComment
+        }]
+
+    });
+
+    const customerReview = await Review.find({ product: prodid });
+    console.log(customerReview);
+    if (customerReview.length > 0) {
+        //push new comments
+        console.log("length > 0");
+
+        Review.findOneAndUpdate({
+            _id: customerReview._id
+        }, {
+            $push: {
+                "reviews": req.body
+            }
+        }, (err, updated) => {
+            console.log(updated);
         });
+        customerReview[0].save();
+
+        res.status(200).json({ message: 'New  Review succesfully pushed' });
+    } else {
+        console.log("else condi");
+        //save reviw for new product
+        newReview.save((err, rev) => {
+            if (err) {
+                res.status(500).json({ message: 'Eror is saving Review' })
+            } else if (!rev) {
+                res.status(404).json({ message: 'review not found' })
+            } else {
+                res.status(200).json({ message: rev })
+            }
+        })
+    }
+    // if (customerReviews.length>0){}
+
+
+
 }

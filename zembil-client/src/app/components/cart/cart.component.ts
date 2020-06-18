@@ -10,7 +10,7 @@ import { Cart } from 'src/app/models/cart.model';
   styleUrls: []
 })
 export class CartComponent implements OnInit {
-
+total:any;
   cartItems:any;
   items:Array<any>;
   id;
@@ -41,14 +41,28 @@ export class CartComponent implements OnInit {
     this.userid = user._id;
 
     this.productService.getCart(this.userid).subscribe((res:any[])=>{
-      this.cartItems=res; 
+      console.log(res);
+      this.cartItems=res;
       this.items=this.cartItems.cart;
+      this.total=this.cartItems.total;
+      console.log(this.cartItems);
+
       localStorage.setItem('order',JSON.stringify(this.cartItems.cart))
     })
-    
+
 
   }
 checkout(){
   this.router.navigate(['users','user-dashbord','checkout']);
+}
+removeFromCart(item){
+  console.log(item);
+
+  let user = JSON.parse(localStorage.getItem('user'));
+  this.userid = user._id;
+  this.productService.removeFromCart(this.userid,item).subscribe(res=>{
+    console.log(res);
+this.ngOnInit()
+});
 }
 }

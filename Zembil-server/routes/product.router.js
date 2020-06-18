@@ -14,5 +14,9 @@ router.get('/:userid', productController.getProductBySeller);
 router.get('/:productid', productController.getProductDetails);
 router.put('/update-quantity/:productid', productController.updateQuantity);
 
+//product reviews
+router.post('/add-review/:userid', productController.addNewReview);
+router.get('/', productController.getAllProducts);
+
 
 module.exports = router;
