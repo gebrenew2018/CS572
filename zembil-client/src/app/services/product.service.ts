@@ -46,4 +46,16 @@ productForm:FormGroup= new FormGroup({
   postOrder(userid:any,order:any){
     return this.http.post(environment.apiBaseUrl+"/orders/"+userid,order);
   }
+  getOrders(userid:any){
+    return this.http.get(environment.apiBaseUrl+"/orders/"+userid,this.noAuthHeader);
+  }
+  getSellersOrders(){
+    return this.http.get(environment.apiBaseUrl+"/orders",this.noAuthHeader);
+  }
+  cancelOrder(orderid){
+    return this.http.delete(environment.apiBaseUrl+"/orders/"+orderid,this.noAuthHeader);
+  }
+   changeStatus(changeStatus){
+    return this.http.post(environment.apiBaseUrl+"/orders/change-status/"+status,this.noAuthHeader);
+  }
 }
