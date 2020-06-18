@@ -105,33 +105,46 @@ exports.deleteFromCart = async(req, res, next) => {
     console.log('delete cart ');
     const user = req.params.userid;
     const prodid = req.body._id;
-    const cart = await Cart.findById("5ee564430753ae4bfeeab22c");
-    const product = await Product.findById(req.body.productId);
-    if (cart) {
-        const isExisting = cart.products.findIndex(productIdInDB => {
-            return new String(productIdInDB.productId).trim() == new String(req.body.productId).trim()
-        });
-        console.log(isExisting);
-        if (isExisting >= 0) {
-            cart.products.splice(isExisting, 1);
-            cart.totalPrice -= product.unitPrice
+    const productPrice = req.body.unitPrice;
+    const custCart = await Shoppingcart.find({ user: user });
+    if (custCart.length > 0) {
+        const existingcartid = custCart[0]._id;
+        let itemIndex = custCart[0].items.findIndex(p => p._id == prodid);
+        if (itemIndex > -1) {
+            custCart[0].items.splice(existingcartid, 1);
+            custCart[0].totalPrice -= productPrice;
+
         }
-        cart.save((err, cart) => {
-            if (err) {
-                res.status(400).json({ message: 'Error in deleting product from cart' + err });
-            } else if (!cart) {
-                res.status(404).json({ message: 'Page not found' });
+        await custCart[0].save();
+        res.send({ message: 'Item succcssfully added to cart' })
 
-            } else {
-                res.status(200).json({ message: 'succesfully deleted' });
-            }
-        });
     } else {
-        res.status(404).json({ message: 'Cart not found' });
+        res.status(500).json({ message: 'Error occured in deleting from cart' })
     }
+    // const cart = await Cart.findById("5ee564430753ae4bfeeab22c");
+    // const product = await Product.findById(req.body.productId);
+    // if (cart) {
+    //     const isExisting = cart.products.findIndex(productIdInDB => {
+    //         return new String(productIdInDB.productId).trim() == new String(req.body.productId).trim()
+    //     });
+    //     console.log(isExisting);
+    //     if (isExisting >= 0) {
+    //         cart.products.splice(isExisting, 1);
+    //         cart.totalPrice -= product.unitPrice
+    //     }
+    //     cart.save((err, cart) => {
+    //         if (err) {
+    //             res.status(400).json({ message: 'Error in deleting product from cart' + err });
+    //         } else if (!cart) {
+    //             res.status(404).json({ message: 'Page not found' });
 
-
-
+    //         } else {
+    //             res.status(200).json({ message: 'succesfully deleted' });
+    //         }
+    //     });
+    // } else {
+    //     res.status(404).json({ message: 'Cart not found' });
+    // }
 
 
 }
