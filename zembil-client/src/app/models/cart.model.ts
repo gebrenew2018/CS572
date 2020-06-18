@@ -5,4 +5,6 @@ export class Cart {
     productName:string;
     unitPrice:number;
     quantity:number;
+    imageUrl: string;
+    subtotal:number
 }

@@ -21,4 +21,5 @@ export class AddressService {
   postAddress(userid:string,addressType:string,address:any){
     return this.http.post(environment.apiBaseUrl+'/address/add/'+userid+'/'+addressType,address,this.noAuthHeader);
   }
+  
 }

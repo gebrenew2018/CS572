@@ -1,27 +1,22 @@
-<!-- <div class="row" style="padding-top: 20px;">
+<h1> Items in the cart</h1>
+<table class="mat-elevation-z2 table table-striped" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Details</th>
+            <th>subtotal</th>
+        </tr>
 
-    <div class="col-md-3 col-sm-6" *ngFor="let item of items">
-        <div class="product-grid">
-            <div class="product-image">
-                <a href="#">
-                    <img class="pic-1" src="{{item.itemImage1}}" alt="i-phone">
-                    <img class="pic-2" src="{{item.itemImage2}}" alt="i-phone2">
-                </a>
-                <span class="product-trend-label">
-                    {{item.trending}}
-                </span>
-                <ul class="social">
-                    <!-- (click)="addTocart(item.itemid)" (click)="addTocart(item.itemid)" -->
-<!-- <li><button data-tip="Add to cart"><i class="fa fa-shopping-cart">Remove cart</i></button></li>
-                </ul>
-            </div>
-            <div class="product-content">
-                <h3 class="title"> <a href="#">{{item.itemname}}</a></h3>
-                <div class="price"> {{item.itemprice}}</div>
-            </div>
-        </div>
-    </div>
-</div>  -->
-<h1>Customer cartttttt</h1>
-
-<button (click)="checkout()">Checkout </button>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items">
+            <td><img src="{{item.imageUrl}}" width="280" height="150" alt=""> </td>
+            <td>{{item.productName}}<br> UnitPrice : ${{item.unitPrice}} Quantity :{{item.quantity}}
+            </td>
+            <td>{{item.unitPrice}}*{{item.quantity}}</td>
+        </tr>
+    </tbody>
+</table>
+<div style="float: right;">
+    <button mat-raised-button color="primary" (click)="checkout()">Procced to Checkout</button>
+</div>

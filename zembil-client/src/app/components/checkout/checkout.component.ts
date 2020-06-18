@@ -11,6 +11,8 @@ export class CheckoutComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
+    let order = JSON.parse(localStorage.getItem('order'))
+    console.log(order);
   }
   placeOrder(){
     // after successfull insertion into order and make payment will navigate to summary
