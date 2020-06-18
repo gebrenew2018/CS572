@@ -103,6 +103,8 @@ exports.getCart = (req, res, next) => {
 exports.deleteFromCart = async(req, res, next) => {
 
     console.log('delete cart ');
+    const user = req.params.userid;
+    const prodid = req.body._id;
     const cart = await Cart.findById("5ee564430753ae4bfeeab22c");
     const product = await Product.findById(req.body.productId);
     if (cart) {
