@@ -19,22 +19,29 @@ export class SellerListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<User>;
-  products:any;
+  users:any;
   list:User[];
   testArray:[];
-  displayedColumns: string[]=['firstName', 'lastName', 'role', 'email','status','actions'];
+  displayedColumns: string[]=['firstName', 'lastName', 'status','actions'];
   ngOnInit() {
+   this.refreshList();
+  }
+  refreshList() {
     this.userService.getAllUsers().subscribe(res=>{
-      this.products = res;
-      this.dataSource = this.products.products ;
+      this.users = res;
+      console.log(this.users.user);      
+      this.dataSource = this.users.user ;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
+    })  }
+    approve(elem){
+      console.log('approved');
+    console.log(elem._id);
+    this.userService.approveSeller(elem._id,elem).subscribe(res=>{
+      console.log(res);      
+    });
+    this.refreshList();
   }
-  // onEdit(product:Product){  
-  //   this.productService.selectedProduct = product;
-  //   this.router.navigate(['users','seller-dashbord','edit-product']);
-  // }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

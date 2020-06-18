@@ -13,7 +13,7 @@ module.exports.register = (req, res, next) => {
             email: req.body.email,
             password: req.body.password,
             role: req.body.role,
-            status: 1
+            status: "New"
         });
 
         user.save((err, doc) => {

@@ -29,14 +29,8 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/users/details')
       },
       err => {
-        console.log('Error'+err.error.message);
+        console.log('Error"'+err);
         this.serverErrorMsg = "";
-        // if (err.status === 422) {
-        //   // this.serverErrorMessages = err.error.join('<br/>')
-        // }
-        // else {
-        //   // this.serverErrorMessages = 'Something went wrong. Please contact Admin.';
-        // }
       }
     );
   }

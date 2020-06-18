@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Product } from '../models/product.model';
 import { Observable } from 'rxjs';
+import { Cart } from '../models/cart.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +20,30 @@ productForm:FormGroup= new FormGroup({
   unitPrice: new FormControl('',Validators.required),
   quantity: new FormControl('',Validators.required),
   category: new FormControl('',Validators.required),
-  image: new FormControl('',Validators.required),
+  imageUrl: new FormControl('',Validators.required),
 })
-  loadProducts():Observable<Product[]>{
-    return this.http.get<Product[]>(environment.apiBaseUrl+'/products'); 
+  loadProducts(userid:string):Observable<Product[]>{
+    return this.http.get<Product[]>(environment.apiBaseUrl+'/products/'+userid); 
   }
-  postProduct(product:Product){
-    return this.http.post(environment.apiBaseUrl+'/products/add-product',product);
+  loadAllProducts(){
+    return this.http.get(environment.apiBaseUrl+'/products'); 
+  }
+  postProduct(userid:string, product:any){ 
+    return this.http.post(environment.apiBaseUrl+'/products/add-product/'+userid,product);
   } 
   updateProduct(product:Product){
-    return this.http.put(environment.apiBaseUrl+'/products/update',product);
+    return this.http.put(environment.apiBaseUrl+'/products/update/'+product._id,product);
+  }
+  deleteProduct(productid:string){
+    return this.http.delete(environment.apiBaseUrl+'/products/delete/'+productid);
+  }
+  addToCart(userid,item){
+    return this.http.post(environment.apiBaseUrl+'/cart/add-to-cart/'+userid,item,this.noAuthHeader);
+  }
+  getCart(userid){
+    return this.http.get(environment.apiBaseUrl+'/cart/'+userid,this.noAuthHeader);
+  }
+  postOrder(userid:any,order:any){
+    return this.http.post(environment.apiBaseUrl+"/orders/"+userid,order);
   }
 }
