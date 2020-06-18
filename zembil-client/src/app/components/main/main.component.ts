@@ -27,6 +27,10 @@ export class MainComponent implements OnInit {
       console.log(this.itemss);
     });
   }
+  getDetails(item){
+    localStorage.setItem('item',item);
+    this.router.navigate(['product-detail'])
+  }
   addTocart(item) {
     if (!this.userService.isLoggedIn()) {
       this.router.navigateByUrl('/users/signin');
