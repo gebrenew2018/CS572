@@ -19,11 +19,8 @@ displayedColumns: string[]=['orderId','items','totalPrice','orderedDate','status
   
     let user =JSON.parse(localStorage.getItem('user'))
      this.productService.getOrders(user._id).subscribe(res=>{
-       console.log(res);
       this.orders=res;    
       this.dataSource=this.orders; 
-      console.log(this.dataSource);
-      
     })
   }
 
