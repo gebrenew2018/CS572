@@ -94,10 +94,19 @@ exports.addToCart = async(req, res, next) => {
 exports.getCart = (req, res, next) => {
     Shoppingcart.find({ user: req.params.userid }, (err, cart) => {
             if (!err) {
+<<<<<<< HEAD
+                if(cart.length>0){
+                    res.status(200).json({ cart: cart[0].items });
+                }
+                else{
+                    res.status(500).json({ cart: null })
+                }
+=======
                 if (cart.length > 0)
                     res.status(200).json({ cart: cart[0].items, total: cart[0].totalPrice });
                 else
                     res.send({ message: 'No Items in the cart' })
+>>>>>>> e0cd1e14ca7da70919cd51461936f5c69e85d4a6
             } else {
                 res.send({ message: 'No Items in the cart' })
             }
