@@ -23,6 +23,9 @@ export class UserDashbordComponent implements OnInit {
   billingAddress(){
     this.router.navigate(['users','user-dashbord','billing-address'],{ queryParams: { address: "billing"} })
   }
+  creditCard(){
+    this.router.navigate(['users','user-dashbord','credits'],{ queryParams: { address: "credit"} })
+  }
   onLogout(){
     this.userService.deleteToken();
     this.router.navigateByUrl('/users/signin');

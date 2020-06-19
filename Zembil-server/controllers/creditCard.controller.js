@@ -6,15 +6,14 @@ const User = require('../models/user.model');
 
 
 module.exports.addNewCreditCard = (req, res, next) => {
+    console.log(req.params.userid)
+    console.log(req.body.year)
     const creditCard = new CreditCard({
         _id: new mongoose.Types.ObjectId(),
-        cardOwner: req.body.cardOwner,
-        billingAddress: req.body.billingAddress,
-        amountInCard: req.body.amountInCard,
         cardNumber: req.body.cardNumber,
-        csv: req.body.csv,
-        expMonth: req.body.expMonth,
-        expYear: req.body.expYear
+        csv: req.body.cww,
+        expMonth: req.body.month,
+        expYear: req.body.year
 
     });
 
