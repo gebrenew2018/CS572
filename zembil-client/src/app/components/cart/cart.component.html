@@ -24,7 +24,9 @@
 <div *ngIf="items?.length > 0; else empty">
     <h5 style="display: inline;">Total: {{total | currency}}</h5>
     <!-- <button (click)="checkout()" class="btn btn-warning float-right">Checkout</button> -->
-    <button mat-raised-button color="primary" (click)="checkout()">Procced to Checkout</button>
+    <div style="float: right;">
+        <button mat-raised-button color="primary" (click)="checkout()">Procced to Checkout</button>
+    </div>
 </div>
 <ng-template #empty>
     <h4 class="text-muted text-center">Cart is empty. Go to get something! :)</h4>

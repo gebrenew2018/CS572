@@ -33,7 +33,9 @@ import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { CreditsComponent } from './components/credits/credits.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { CreditsComponent } from './components/credits/credits.component';
     CreditsComponent
   ],
   imports: [
-    BrowserModule,
+
+  BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
@@ -67,7 +70,9 @@ import { CreditsComponent } from './components/credits/credits.component';
     MatGridListModule,
     MatInputModule,
     MatButtonModule,
+    MatCardModule
     ToastrModule.forRoot()
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

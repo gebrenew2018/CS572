@@ -33,6 +33,7 @@ total:any;
       this.items=this.cartItems.cart;
       this.total=this.cartItems.total;
       console.log(this.cartItems);
+      localStorage.setItem('total', JSON.stringify(this.total))
 
       localStorage.setItem('order',JSON.stringify(this.cartItems.cart))
     })

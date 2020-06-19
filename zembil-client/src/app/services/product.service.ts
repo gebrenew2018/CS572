@@ -62,4 +62,12 @@ productForm:FormGroup= new FormGroup({
    changeStatus(changeStatus){
     return this.http.post(environment.apiBaseUrl+"/orders/change-status/"+status,this.noAuthHeader);
   }
+
+
+  getAllReviews( userid, productId){
+    return this.http.get(environment.apiBaseUrl+'//'+userid+'/'+productId,this.noAuthHeader);
+  }
+  addComment(val,userid,productId){
+    return this.http.post(environment.apiBaseUrl+'/products/add-review/'+userid+'/'+productId,val);
+  }
 }

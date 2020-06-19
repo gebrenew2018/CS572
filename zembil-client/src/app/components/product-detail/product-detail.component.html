@@ -1,1 +1,41 @@
-<p>product-detail works!</p>
+<div class="container">
+
+    <section>
+        <div class="card" style="width: 18rem;">
+            <img src="{{product.imageUrl}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{product.productName}}</h5>
+                <p class="card-text">some detail information about this product.quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p>
+                    <small> Comment:</small><textarea cols="30" rows="2" #inputComment></textarea>
+                </p>
+                <a href="#" class="btn btn-primary" (click)="addComment(inputComment.value)">Comment</a>
+            </div>
+            <!-- render previous comments -->
+            <table class="mat-elevation-z2 table table-striped" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr *ngFor="let review of reviews">
+
+                        <td>${{review.user}}</td>
+                        <td>
+                            {{review.comment}}
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </section>
+
+</div>

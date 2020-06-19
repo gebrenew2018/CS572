@@ -28,20 +28,20 @@ export class MainComponent implements OnInit {
     });
   }
   getDetails(item){
-    localStorage.setItem('item',item);
+    localStorage.setItem('item',JSON.stringify(item));
     this.router.navigate(['product-detail'])
   }
   addTocart(item) {
     if (!this.userService.isLoggedIn()) {
       this.router.navigateByUrl('/users/signin');
-      this.tost.error('Please Login first for online shopping.', 
+      this.tost.error('Please Login first for online shopping.',
       'Zembil Online shopping')
     } else {
       let user = JSON.parse(localStorage.getItem('user'));
       this.userid = user._id;
       this.productService.addToCart(this.userid, item).subscribe((res:any) => {
         console.log(res.message);
-        this.tost.success('Item Successfully added to cart.', 
+        this.tost.success('Item Successfully added to cart.',
         'Zembil Online shopping')
       });
     }
