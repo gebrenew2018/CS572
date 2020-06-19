@@ -14,46 +14,48 @@ import { Router } from '@angular/router';
 })
 export class OrderListComponent implements OnInit {
 
-  constructor(private toaster:ToastrService, private userService:UserService, private router: Router, private productService:ProductService) { 
+  constructor(private toaster: ToastrService, private userService: UserService, private router: Router, private productService: ProductService) {
     this.dataSource = new MatTableDataSource();
   }
-  form:FormGroup;
-orders:any;
-dataSource: MatTableDataSource<any>;
-displayedColumns: string[]=['orderId','items','totalPrice','orderedDate','status','actions'];
+  form: FormGroup;
+  orders: any;
+  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['orderId', 'items', 'totalPrice', 'orderedDate', 'status', 'actions'];
   ngOnInit(): void {
-    if(!this.userService.isLoggedIn()){
-      this.toaster.info('Please Login first','Zembil Online');
+    if (!this.userService.isLoggedIn()) {
+      this.toaster.info('Please Login first', 'Zembil Online');
       this.router.navigateByUrl('/users/signin');
-    } else{let user =JSON.parse(localStorage.getItem('user'))
-     this.displayOrders();
-    this.form = new FormGroup({
-      status: new FormControl('')
-    })}
-    
+    } else {
+      let user = JSON.parse(localStorage.getItem('user'))
+      this.productService.getSellersOrders().subscribe(res => {
+      this.orders = res;
+      this.dataSource = this.orders;
+
+    })
+      this.form = new FormGroup({
+        status: new FormControl('')
+      })
+    }
+
   }
-  displayOrders() {
-    this.productService.getSellersOrders().subscribe(res=>{
-      this.orders=res;    
-      this.dataSource=this.orders; 
-      
-    })  }
-  onCancel(orderId){
+
+  onCancel(orderId) {
     console.log(orderId);
-    this.productService.cancelOrder(orderId).subscribe(res=>{
-      if(res){
-      this.toaster.success('Order Successfully cancelled','Zembil Online');
-        this.displayOrders();
-    }else{
-        this.toaster.warning('Something went wrong inside server. please try again','Zembil Online');
+    this.productService.cancelOrder(orderId).subscribe(res => {
+      if (res) {
+        this.toaster.success('Order Successfully cancelled', 'Zembil Online');
+        this.ngOnInit();
+      } else {
+        this.toaster.warning('Something went wrong inside server. please try again', 'Zembil Online');
       }
-      
+
     })
   }
-  changeOrderStatus(form){
+  changeOrderStatus(form) {
     console.log(form.value);
-    this.productService.changeStatus(form.value).subscribe(res=>{
-      console.log('status',res);      
+    this.productService.changeStatus(form.value).subscribe((res: any) => {
+      this.toaster.success(res.message, 'Zembil Online')
+      this.ngOnInit();
     })
   }
 }

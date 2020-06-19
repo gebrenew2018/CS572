@@ -19,6 +19,15 @@ module.exports.placeOrder = (req, res, next) => {
     })
     order.save((err, order) => {
         if (!err) {
+            User.findById({ _id: order.user }, (err, user) => {
+                var email = {
+                    orderid: order._id,
+                    email: user.email,
+                    status: "Ordered"
+                }
+                req.body = email;
+                const emailSender = EmailSender.send(email);
+            })
             console.log('order saved', order);
             Cart.deleteOne({ user: order.user }, (err) => {
                 if (!err)

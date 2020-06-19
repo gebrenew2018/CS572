@@ -5,10 +5,12 @@ module.exports.send = (email) => {
     const receiveremail = email.email;
     const orderstatus = email.status;
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
         auth: {
             user: 'zembillive@gmail.com',
-            pass: 'password' //encrypted password
+            pass: 'ZembilMWA' //encrypted password
         }
     });
     //select all my subscribers from subscriptions collection
