@@ -10,42 +10,22 @@ import {NgxPaginationModule} from 'ngx-pagination'
   styleUrls: []
 })
 export class OrderSummaryComponent implements OnInit {
-
 ordno;
-customerNumber;
-totalPrice;
-orderdate;
-name;
-cno;
-shippingAddress;
-city;
-state;
-zip;
 totalCharged;
 orderDate;
-
-
   constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.ordno="2345678";
-    this.totalPrice="150";
-    this.name="mk";
-    this.cno="141"
-    this.shippingAddress="2000 n c st"
-    this.city="fairefield"
-    this.state="IA"
-    this.zip="34567"
     this.totalCharged="150"
-    this.orderDate="12/5/2020"
-    this.customerNumber="3478HR3"
+    this.orderDate="6/18/2020"
+
 
   }
 
   goToHome(){
     this.router.navigate(['users','user-dashbord','all-products'])
   }
-
 
   Print(myForm){
     console.log(myForm);
@@ -64,7 +44,5 @@ orderDate;
     })
 
   }
-
-
 
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+  <head>
     <title>Summary</title>
 
     <style>
@@ -19,130 +18,64 @@
         color: #555;
       }
     </style>
-</head>
+  </head>
 
-<!-- new -->
-<body onload="myFunction()">
-  <div id="target" class="center">
 
-    <!-- new -->
+  <body >
+    <div id="target" class="center">
 
-<div style="padding-right:15px;" class="container-fluid">
+      <div style="padding-right: 15px;" class="container-fluid">
 
-  <!-- form header -->
-  <div class="row">
-    <div class="col">
-      <h1>Order-successful</h1>
-      <h5>Thank you for shopping with us!</h5>
-      <hr>
-    </div>
-  </div>
-
-  <!-- main form -->
-  <div class="row">
-    <form action="" style="width:100%;" #myForm="ngForm">
-      <div class="col">
-
-        <!-- personal info -->
         <div class="row">
           <div class="col">
-            <div class="form-group">
-              <label for="fnText">Order No.:
-              <input type="hidden" #orderNumber />{{ ordno}}
-            </label>
-            </div>
+            <h1>Order-successful</h1>
+            <h5>Thank you for shopping with us!</h5>
+            <hr />
           </div>
-
-          <div class="col">
-            <div class="form-group">
-              <label for="lnText">Customer No.:
-              <input type="hidden"#customerNo>{{customerNumber}}
-            </label>
-            </div>
-          </div>
-  <!-- seperator -->
-  <div class="row">
-    <div class="col">
-      <hr>
-    </div>
-  </div>
-
         </div>
-
-        <!-- address form portion -->
-        <div class="row" ngModelGroup="address">
-          <div class="col-12">
-            <label for="addText">Shipping Address:
-              <input type="hidden" #shipAddress>{{shippingAddress}}
-          </label>
-          </div>
-
-          <div class="col-6">
-            <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="city">City:
-                    <input type="hidden" #shipcity>{{city}}
-                </label>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label for="state">State:
-                    <input type="hidden" #shippState>{{state}}
+        <div class="row">
+          <form action="" style="width: 100%;" #myForm="ngForm">
+            <div class="col">
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="fnText"
+                      >Order No.: <input type="hidden" #orderNumber />{{ordno}}
                     </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <hr />
+                  </div>
                 </div>
               </div>
 
               <div class="col">
                 <div class="form-group">
-                  <label for="zipcode">Zip:
-                    <input type="hidden" #Zip>{{zip}}
-                </label>
+                  <label for="totalCharged"
+                    >Order Total: <input type="hidden" #total />{{totalCharged}}
+                  </label>
                 </div>
               </div>
 
+              <div class="col">
+                <div class="form-group">
+                  <label for="orderDate"
+                    >Order Date: <input type="hidden" #date />{{ orderDate }}
+                  </label>
+                </div>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
-
-        <div class="col">
-          <div class="form-group">
-              <label for="totalCharged">Order Total:
-                  <input type="hidden" #total>{{totalCharged}}
-              </label>
-          </div>
       </div>
-
-
-      <div class="col">
-        <div class="form-group">
-            <label for="orderDate">Order Date:
-                <input type="hidden" #date>{{orderDate}}
-            </label>
-        </div>
     </div>
-      </div>
-    </form>
-  </div>
-</div>
-
-   <!-- Printing date on the invoice -->
-   <p id="billingDate"></p>
-   <script>
-       function myFunction() {
-           var d = new Date();
-           var n = d.toISOString();
-           document.getElementById("billingDate").innerHTML = n;
-       }
-   </script>
-<button (click)="download()">Print Invoice</button>
-</div>
-<div class="center">
-  <!-- <button (click)="download()">Print Invoice</button> -->
-</div>
- <br> <button type="button" [disabled]="!myForm.form.valid"  class="btn btn-primary" (click)="goToHome()">continue
-      shopping</button>
-</body>
-
+    <div class="center">
+      <button (click)="download()">Print Invoice</button>
+    </div>
+    <br />
+    <button type="button" [disabled]="!myForm.form.valid" class="btn btn-primary" (click)="goToHome()"> continue shopping
+    </button>
+  </body>
 </html>
