@@ -23,14 +23,14 @@ productForm:FormGroup= new FormGroup({
   imageUrl: new FormControl('',Validators.required),
 })
   loadProducts(userid:string):Observable<Product[]>{
-    return this.http.get<Product[]>(environment.apiBaseUrl+'/products/'+userid); 
+    return this.http.get<Product[]>(environment.apiBaseUrl+'/products/'+userid);
   }
   loadAllProducts(){
-    return this.http.get(environment.apiBaseUrl+'/products'); 
+    return this.http.get(environment.apiBaseUrl+'/products');
   }
-  postProduct(userid:string, product:any){ 
+  postProduct(userid:string, product:any){
     return this.http.post(environment.apiBaseUrl+'/products/add-product/'+userid,product);
-  } 
+  }
   updateProduct(product:Product){
     return this.http.put(environment.apiBaseUrl+'/products/update/'+product._id,product);
   }
@@ -43,7 +43,23 @@ productForm:FormGroup= new FormGroup({
   getCart(userid){
     return this.http.get(environment.apiBaseUrl+'/cart/'+userid,this.noAuthHeader);
   }
-  postOrder(userid:any,order:any){
+  removeFromCart(userid,item){
+    console.log(item);
+    return this.http.delete(environment.apiBaseUrl+'/cart/removeItem-from-cart/'+userid+'/'+item._id);
+  }
+    postOrder(userid:any,order:any){
     return this.http.post(environment.apiBaseUrl+"/orders/"+userid,order);
+  }
+  getOrders(userid:any){
+    return this.http.get(environment.apiBaseUrl+"/orders/"+userid,this.noAuthHeader);
+  }
+  getSellersOrders(){
+    return this.http.get(environment.apiBaseUrl+"/orders",this.noAuthHeader);
+  }
+  cancelOrder(orderid){
+    return this.http.delete(environment.apiBaseUrl+"/orders/"+orderid,this.noAuthHeader);
+  }
+   changeStatus(changeStatus){
+    return this.http.post(environment.apiBaseUrl+"/orders/change-status/"+status,this.noAuthHeader);
   }
 }
