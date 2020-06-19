@@ -1,23 +1,27 @@
 const nodemailer = require('nodemailer');
-module.exports.send = (req, res, next) => {
+module.exports.send = (email) => {
+    console.log('DETAIL:', email);
+    const orderid = email.orderid;
+    const receiveremail = email.email;
+    const orderstatus = email.status;
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'gebreonline@gmail.com',
-            pass: 'password'
+            user: 'zembillive@gmail.com',
+            pass: 'password' //encrypted password
         }
     });
     //select all my subscribers from subscriptions collection
     var mail = {
-        from: 'gebronline@gmail.com',
-        to: 'gebrescholar2018@gmail.com,gebrenew2012@gmail.com,ggebreegziyabher@gmail.com',
-        subject: 'New peoduct available',
-        text: `Congratulations! We have a new product please check it out - product url`
+        from: 'zembillive@gmail.com',
+        to: receiveremail,
+        subject: 'Order Status',
+        text: `Order Confirmation! Your order with order status ` + orderid + ` is ` + orderstatus
     };
     transporter.sendMail(mail, (err, info) => {
 
         if (err) {
-            console.log('Error in sending email.');
+            console.log('Error in sending email.' + err);
         } else {
             console.log('Email sent:' + info.response);
 

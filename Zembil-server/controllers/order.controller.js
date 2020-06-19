@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Order = mongoose.model('Order');
-const Cart = mongoose.model('Shoppingcart')
+const Cart = mongoose.model('Shoppingcart');
+const User = mongoose.model('User');
+const EmailSender = require('.../../../config/mailSender')
 
 module.exports.placeOrder = (req, res, next) => {
     console.log(req.params.userid);
@@ -51,13 +53,25 @@ module.exports.getSellersOrders = (req, res, next) => {
     })
 }
 module.exports.cancelOrder = async(req, res, next) => {
-    const order = await Order.find({ _id: req.params.orderid, status: "Ordered" });
-    if (order.length == 0) {
+    const existingOrder = await Order.find({ _id: req.params.orderid, status: "Ordered" });
+
+    if (existingOrder.length == 0) {
         res.send({ message: 'This order is either shipped or delevered' })
     } else {
         Order.deleteOne({ _id: req.params.orderid, status: "Ordered" }, (err, order) => {
             if (!err) {
+
+                User.findById({ _id: existingOrder[0].user }, (err, user) => {
+                    var email = {
+                        orderid: existingOrder[0]._id,
+                        email: user.email,
+                        status: "Cancelled"
+                    }
+                    req.body = email;
+                    const emailSender = EmailSender.send(email);
+                })
                 res.send({ message: 'Order successfully cancelled' })
+
             } else {
                 console.log('not deleted');
                 res.send({ message: 'This order is either shipped or delevered' })
@@ -74,8 +88,19 @@ module.exports.changeStatus = async(req, res, next) => {
     console.log('orderId:' + orderid)
     console.log('Status:' + status)
     const existingOrder = await Order.findOne({ _id: orderid })
+    const user = await User.findById({ _id: existingOrder.user })
+    console.log(user);
 
     existingOrder.status = status
     await existingOrder.save();
+    // send email
+    var email = {
+        orderid: existingOrder._id,
+        email: user.email,
+        status: status
+    }
+    req.body = email;
+    const emailSender = EmailSender.send(email);
+    //end of send email
     res.send({ message: 'Status Updated.' })
 }
