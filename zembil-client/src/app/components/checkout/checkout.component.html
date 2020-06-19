@@ -5,10 +5,10 @@
             <table style="width:100%">
                 <caption style="caption-side:top;background-color: azure;font-weight: bold;">Shipping</caption>
                 <tr>
-                    <td>Gebre </td>
+                    <td>{{user.firstName}} {{user.lastName}}</td>
                 </tr>
                 <tr>
-                    <td>1000N 4th St ,Fairfield,IA, United State </td>
+                    <td> </td>
                     <td><a href="url">edit</a></td>
                 </tr>
             </table>
@@ -19,7 +19,7 @@
                     <td>Visa xxxx-9850 Gebre</td>
                 </tr>
                 <tr>
-                    <td>1000N 4th St ,Fairfield,IA, United State </td>
+                    <td>{{shAddress[0].country}} {{shAddress[0].city}} {{shAddress[0].street}} </td>
                     <td><a href="url">edit</a></td>
                 </tr>
             </table>
@@ -31,16 +31,16 @@
                     <td>Visa xxxx-9850 Gebre</td>
                 </tr>
                 <tr>
-                    <td>Item Order</td>
-                    <td>$95</td>
+                    <td>tax:</td>
+                    <td>{{tax}}</td>
                 </tr>
                 <tr>
-                    <td>Shipping</td>
-                    <td>$0</td>
+                    <td>Shipping charge</td>
+                    <td>{{shippingCharge}}</td>
                 </tr>
                 <tr>
                     <td>Order Total</td>
-                    <td>$95</td>
+                    <td>{{totalPrice}}</td>
                 </tr>
                 <tr>
                     <td colspan="2"><button (click)="placeOrder()" style="background-color:orange;width: 50%;">Place Order</button></td>

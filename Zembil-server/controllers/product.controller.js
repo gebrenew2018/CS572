@@ -166,9 +166,9 @@ module.exports.addNewReview = async(req, res, next) => {
     console.log('in add review');
 
     const user = req.params.userid;
-    const prodid = req.body.product;
+    const prodid = req.params.productId;
     console.log(user);
-    console.log(req.body.comment);
+    console.log(req.body);
 
     const myComment = req.body.comment
 
@@ -181,6 +181,10 @@ module.exports.addNewReview = async(req, res, next) => {
         }]
 
     });
+    reviewmodel = {
+        user: user,
+        comment: myComment
+    }
 
     const customerReview = await Review.find({ product: prodid });
     console.log(customerReview);
@@ -192,7 +196,7 @@ module.exports.addNewReview = async(req, res, next) => {
             _id: customerReview._id
         }, {
             $push: {
-                "reviews": req.body
+                "reviews": reviewmodel
             }
         }, (err, updated) => {
             console.log(updated);
@@ -217,4 +221,17 @@ module.exports.addNewReview = async(req, res, next) => {
 
 
 
+}
+module.exports.getAllReviews = (req, res, next) => {
+
+    Review.find({ product: prodid }, (err, review) => {
+        if (!err) {
+            if (review.length > 0)
+                res.status(200).json({ review: review[0].reviews });
+            else
+                res.send({ message: 'No reviews found' })
+        } else {
+            res.send({ message: 'No Review object' })
+        }
+    })
 }
