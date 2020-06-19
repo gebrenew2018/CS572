@@ -17,11 +17,15 @@ export class CheckoutComponent implements OnInit {
   biAddress :any;
   Shippingaddress:AddressModel;
   BillingAddress :AddressModel;
-  user; 
-  order; 
+  user;
+  order;
+  totalPrice;
+  shippingCharge:number=0;
+  tax:number=0;
   ngOnInit(): void {
+this.totalPrice=JSON.parse(localStorage.getItem('total'))
     this.order = JSON.parse(localStorage.getItem('order'))
-    this.user = JSON.parse(localStorage.getItem('user'))    
+    this.user = JSON.parse(localStorage.getItem('user'))
     this.addressService.getAddress(this.user._id,this.billing).subscribe((res:any)=>{
       this.biAddress=res.address;
       let billing =JSON.stringify(this.biAddress[0]);
@@ -32,7 +36,7 @@ export class CheckoutComponent implements OnInit {
     })
     this.addressService.getAddress(this.user._id,this.shipping).subscribe((res:any)=>{
       this.shAddress=res.address;
-      console.log(this.shAddress[0]);   
+      console.log(this.shAddress[0]);
          })
   }
   placeOrder(){
@@ -40,7 +44,7 @@ export class CheckoutComponent implements OnInit {
     console.log(this.order);
     console.log(this.user);
     this.productService.postOrder(this.user._id,this.order).subscribe((res:any)=>{
-      console.log(res);      
+      console.log(res);
     })
     // after successfull insertion into order and make payment will navigate to summary
     this.router.navigate(['users','user-dashbord','order-summary'])

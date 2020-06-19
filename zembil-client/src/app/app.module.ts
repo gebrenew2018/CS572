@@ -33,6 +33,7 @@ import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { MatButtonModule } from '@angular/material/button';
     OrderSummaryComponent
   ],
   imports: [
-    BrowserModule,
+
+  BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
@@ -66,6 +68,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatGridListModule,
     MatInputModule,
     MatButtonModule,
+    MatCardModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

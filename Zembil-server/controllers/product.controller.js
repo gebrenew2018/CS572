@@ -166,9 +166,9 @@ module.exports.addNewReview = async(req, res, next) => {
     console.log('in add review');
 
     const user = req.params.userid;
-    const prodid = req.body.product;
+    const prodid = req.params.productId;
     console.log(user);
-    console.log(req.body.comment);
+    console.log(req.body);
 
     const myComment = req.body.comment
 
