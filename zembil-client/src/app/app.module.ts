@@ -33,6 +33,7 @@ import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { CreditsComponent } from './components/credits/credits.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { MatButtonModule } from '@angular/material/button';
     AccessDeniedComponent,
     PageNotFoundComponent,
     InformationComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    CreditsComponent
   ],
   imports: [
     BrowserModule,

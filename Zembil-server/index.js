@@ -31,7 +31,7 @@ app.use('/api/v1/products', rtsProduct);
 app.use('/api/v1/cart', rtsCart);
 app.use('/api/v1/orders', rtsOrder);
 app.use('/api/v1/address', rtsAddress)
-app.use('/api/v1/creditCards', rtsCreditCard);
+app.use('/api/v1/credit-card', rtsCreditCard);
 
 
 

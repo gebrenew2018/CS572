@@ -89,7 +89,12 @@ exports.addToCart = async(req, res, next) => {
 exports.getCart = (req, res, next) => {
     Shoppingcart.find({ user: req.params.userid }, (err, cart) => {
             if (!err) {
-                res.status(200).json({ cart: cart[0].items });
+                if(cart.length>0){
+                    res.status(200).json({ cart: cart[0].items });
+                }
+                else{
+                    res.status(500).json({ cart: null })
+                }
             } else {
                 res.status(500).json({ cart: null })
             }
