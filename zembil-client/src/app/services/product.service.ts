@@ -59,7 +59,7 @@ productForm:FormGroup= new FormGroup({
   cancelOrder(orderid){
     return this.http.delete(environment.apiBaseUrl+"/orders/"+orderid,this.noAuthHeader);
   }
-   changeStatus(changeStatus){
-    return this.http.post(environment.apiBaseUrl+"/orders/change-status/"+status,this.noAuthHeader);
+   changeStatus(status){
+    return this.http.put(environment.apiBaseUrl+"/orders/change-status",status,this.noAuthHeader);
   }
 }

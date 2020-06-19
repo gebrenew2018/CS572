@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { User } from 'src/app/models/user.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-seller-list',
@@ -13,7 +14,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class SellerListComponent implements OnInit {
   
-  constructor(public userService:UserService, private router: Router) {
+  constructor(private toster: ToastrService, public userService:UserService, private router: Router) {
     this.dataSource = new MatTableDataSource();
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -24,23 +25,24 @@ export class SellerListComponent implements OnInit {
   testArray:[];
   displayedColumns: string[]=['firstName', 'lastName', 'status','actions'];
   ngOnInit() {
+    if(!this.userService.isLoggedIn()){
+      this.toster.info('Please Login first','Zembil Online');
+      this.router.navigateByUrl('/users/signin');
+    }
    this.refreshList();
   }
   refreshList() {
     this.userService.getAllUsers().subscribe(res=>{
       this.users = res;
-      console.log(this.users.user);      
       this.dataSource = this.users.user ;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })  }
     approve(elem){
-      console.log('approved');
-    console.log(elem._id);
     this.userService.approveSeller(elem._id,elem).subscribe(res=>{
-      console.log(res);      
+      this.toster.info('Seller Approved Successfully.','Zembil Online');
+      this.refreshList();
     });
-    this.refreshList();
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

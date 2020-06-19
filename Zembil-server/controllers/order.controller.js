@@ -50,27 +50,32 @@ module.exports.getSellersOrders = (req, res, next) => {
         }
     })
 }
-module.exports.cancelOrder = (req, res, next) => {
-    Order.deleteOne({ _id: req.params.orderid, status: "Ordered" }, (err, order) => {
-        if (!err) {
-            console.log('deleted');
-            res.send({ message: 'Order successfully cancelled' })
-        } else {
-            console.log('not deleted');
-            res.send({ message: 'This order is either shipped or delevered' })
+module.exports.cancelOrder = async(req, res, next) => {
+    const order = await Order.find({ _id: req.params.orderid, status: "Ordered" });
+    if (order.length == 0) {
+        res.send({ message: 'This order is either shipped or delevered' })
+    } else {
+        Order.deleteOne({ _id: req.params.orderid, status: "Ordered" }, (err, order) => {
+            if (!err) {
+                res.send({ message: 'Order successfully cancelled' })
+            } else {
+                console.log('not deleted');
+                res.send({ message: 'This order is either shipped or delevered' })
 
-        }
-    })
+            }
+        })
+    }
+
+
 }
-module.exports.changeStatus = (req, res, next) => {
-    Order.findByIdAndUpdate(req.params.orderid, (err, order) => {
-        if (!err) {
-            console.log(order);
-            res.send({ message: 'Order status successfully changed' })
-        } else {
-            console.log('not changed');
-            res.send({ message: 'Error in changin status' })
+module.exports.changeStatus = async(req, res, next) => {
+    const orderid = req.body.status.split(' ')[0];
+    const status = req.body.status.split(' ')[1];
+    console.log('orderId:' + orderid)
+    console.log('Status:' + status)
+    const existingOrder = await Order.findOne({ _id: orderid })
 
-        }
-    })
+    existingOrder.status = status
+    await existingOrder.save();
+    res.send({ message: 'Status Updated.' })
 }

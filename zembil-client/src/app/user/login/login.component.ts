@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public userService: UserService, private router: Router) { }
+  constructor(private toaster:ToastrService, public userService: UserService, private router: Router) { }
   model ={
     email :'',
     password:''
@@ -25,12 +26,12 @@ export class LoginComponent implements OnInit {
   onSubmit(form) {
     this.userService.logInUser(form.value).subscribe(
       res => {
+        this.toaster.success('Welcome to Online shopping.','Zembil Online');
         this.userService.setToken(res['token']);
         this.router.navigateByUrl('/users/details')
       },
       err => {
-        console.log('Error"'+err);
-        this.serverErrorMsg = "";
+        this.toaster.error('Something went wrong. please try again or contact admin.','Zembil Online');
       }
     );
   }

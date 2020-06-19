@@ -60,7 +60,9 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
     MatTableModule,
     MatFormFieldModule,
     MatGridListModule,

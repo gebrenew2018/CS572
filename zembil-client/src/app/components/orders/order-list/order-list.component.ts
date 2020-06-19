@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-order-list',
@@ -9,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class OrderListComponent implements OnInit {
 
-  constructor(private productService:ProductService) { 
+  constructor(private toaster: ToastrService ,private productService:ProductService) { 
     this.dataSource = new MatTableDataSource();
   }
 orders:any;
@@ -26,8 +27,9 @@ displayedColumns: string[]=['orderId','items','totalPrice','orderedDate','status
 
   onCancel(orderId){
     console.log(orderId);
-    this.productService.cancelOrder(orderId).subscribe(res=>{
+    this.productService.cancelOrder(orderId).subscribe((res:any)=>{
       console.log(res);
+      this.toaster.info(res.message,'Zembil Online')
     })
   }
 
