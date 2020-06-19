@@ -11,7 +11,6 @@ import {NgxPaginationModule} from 'ngx-pagination'
 })
 export class OrderSummaryComponent implements OnInit {
 
-  customerInfo:{firstName:"mk",lastName:"tk",email:"mk@gamil.com", phone:"567890"}
 ordno;
 customerNumber;
 totalPrice;

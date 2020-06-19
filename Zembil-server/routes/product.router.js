@@ -7,9 +7,10 @@ const jwtHelper = require('../config/jwtHelper');
 
 // router.post('/add-product', productController.addNewProduct);
 router.get('/', productController.getAllProducts);
-router.post('/add-product', productController.addNewProduct);
+router.post('/add-product/:supplierid', productController.addNewProduct);
 router.put('/update/:productid', productController.updateProductDetails);
 router.delete('/delete/:productid', productController.deleteProduct);
+router.get('/:userid', productController.getProductBySeller);
 router.get('/:productid', productController.getProductDetails);
 router.put('/update-quantity/:productid', productController.updateQuantity);
 

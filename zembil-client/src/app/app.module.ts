@@ -21,14 +21,18 @@ import { UserService } from './services/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.intercepter';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import {NgxPaginationModule} from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
+//import { ToastrModule } from 'ngx-toastr';
 import { AccessDeniedComponent } from './components/shared/access-denied/access-denied.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { InformationComponent } from './components/shared/information/information.component';
 import {MatTableModule} from '@angular/material/table';
 import { ProductService } from './services/product.service';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -56,8 +60,12 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
     ReactiveFormsModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
-    NgxPaginationModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatInputModule,
+    MatButtonModule,
+  //  ToastrModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

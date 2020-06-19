@@ -3,28 +3,30 @@ const Schema = mongoose.Schema;
 
 const addressSchema = new Schema({
     _id: {
+        type: String
+    },
+    user: {
         type: String,
-        required: true
+        ref: 'User'
+    },
+    addressType: {
+        type: String
     },
     country: {
-        type: String,
-        required: true
+        type: String
     },
     State: {
         type: String,
-        required: true
     },
     street: {
-        type: String,
-        required: true
+        type: String
     },
     city: {
-        type: String,
-        required: true
+        type: String
     },
     zipcode: {
-        type: String,
-        required: true
+        type: String
     }
 
 });
+mongoose.model('Address', addressSchema);

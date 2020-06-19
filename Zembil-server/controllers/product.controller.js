@@ -21,36 +21,37 @@ const upload = multer({
 
 
 module.exports.addNewProduct = (req, res, next) => {
-    let user = JSON.parse(localStorage.getItem('user'));
-    upload(req, res, (err) => {
+    console.log('adding new product......');
+    // upload(req, res, (err) => {
+    //     if (err) {
+    //         console.log('Error in image uploading');
+    //     } else {
+
+    const product = new Product({
+        _id: new mongoose.Types.ObjectId(),
+        productName: req.body.productName,
+        imageUrl: req.body.imageUrl,
+        // frontImage: req.files[1].filename,
+        // backImage: req.files[0].filename,
+        quantity: req.body.quantity,
+        supplierId: req.params.supplierid,
+        unitPrice: req.body.unitPrice,
+        category: req.body.category,
+        isSold: false
+    });
+    product.save((err, product) => {
         if (err) {
-            console.log('Error in image uploading');
+            res.status(500).json({ message: 'Error in saving the products = ' + err });
+        } else if (!product) {
+            res.status(404).json({ message: 'Error in fetching the saved product.' });
         } else {
-            const product = new Product({
-                _id: new mongoose.Types.ObjectId(),
-                productName: req.body.productName,
-                image: req.file.filename,
-                // frontImage: req.files[1].filename,
-                // backImage: req.files[0].filename,
-                quantity: req.body.quantity,
-                supplierId: req.body.supplierId,
-                unitPrice: req.body.unitPrice,
-                category: req.body.category,
-                isSold: false
-            });
-            product.save((err, product) => {
-                if (err) {
-                    res.status(500).json({ message: 'Error in saving the products = ' + err });
-                } else if (!product) {
-                    res.status(404).json({ message: 'Error in fetching the saved product.' });
-                } else {
-                    // send email to customers subscribed
-                    res.status(200).json({ product: product });
-                    // sendmail.send();
-                }
-            });
+            // send email to customers subscribed
+            res.status(200).json({ product: product });
+            // sendmail.send();
         }
     });
+    //     // }
+    // });
 
 }
 module.exports.getAllProducts = (req, res, next) => {
@@ -65,6 +66,23 @@ module.exports.getAllProducts = (req, res, next) => {
     });
 }
 
+
+
+module.exports.getProductBySeller = (req, res, next) => {
+    console.log('getting product');
+    const seller = req.params.userid;
+
+    const filter = { supplierId: seller };
+    Product.find(filter, (err, products) => {
+        if (err) {
+            res.status(500).json({ message: 'Error in reading products.' });
+        } else if (!products) {
+            res.status(404).json({ message: 'No products found' });
+        } else {
+            res.status(200).json({ products: products });
+        }
+    });
+}
 
 module.exports.getProductDetails = (req, res, next) => {
     const productid = req.params.productid;
@@ -99,7 +117,7 @@ module.exports.deleteProduct = (req, res, next) => {
                 }
             });
         } else {
-            res.status(404).json({ message: 'Product cannot be deleted since it is sold' });
+            res.send({ message: 'Product cannot be deleted since it is sold' });
         }
     });
 

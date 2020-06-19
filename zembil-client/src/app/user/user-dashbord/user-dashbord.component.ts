@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-dashbord',
   templateUrl: './user-dashbord.component.html',
-  styleUrls: ['./user-dashbord.component.css']
+  styleUrls: ['./user-dashbord.component.css'],
 })
 export class UserDashbordComponent implements OnInit {
 
@@ -16,6 +16,12 @@ export class UserDashbordComponent implements OnInit {
   }
   myOrders(){
     this.router.navigate(['users','user-dashbord','my-orders'])
+  }
+  shippingAddress(){
+    this.router.navigate(['users','user-dashbord','shipping-address'],{ queryParams: { address: "shipping"} })
+  }
+  billingAddress(){
+    this.router.navigate(['users','user-dashbord','billing-address'],{ queryParams: { address: "billing"} })
   }
   onLogout(){
     this.userService.deleteToken();

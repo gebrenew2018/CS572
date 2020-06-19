@@ -1,3 +1,52 @@
-<p>Buyers' checkout works! detail</p>
+<table style="width:100%">
+    <caption style="caption-side:top;text-align:center">Place Order</caption>
+    <tr>
+        <td style="width:50%">
+            <table style="width:100%">
+                <caption style="caption-side:top;background-color: azure;font-weight: bold;">Shipping</caption>
+                <tr>
+                    <td>Gebre </td>
+                </tr>
+                <tr>
+                    <td>1000N 4th St ,Fairfield,IA, United State </td>
+                    <td><a href="url">edit</a></td>
+                </tr>
+            </table>
 
-<button (click)="placeOrder()">Place Order</button>
+            <table style="width:100%">
+                <caption style="caption-side:top;background-color: azure;font-weight: bold;">Billing</caption>
+                <tr>
+                    <td>Visa xxxx-9850 Gebre</td>
+                </tr>
+                <tr>
+                    <td>1000N 4th St ,Fairfield,IA, United State </td>
+                    <td><a href="url">edit</a></td>
+                </tr>
+            </table>
+        </td>
+        <td style="width:50%">
+            <table style="width:100%;margin-left: 20px;">
+                <caption style="caption-side:top;background-color: azure;font-weight: bold;">Order Summary</caption>
+                <tr>
+                    <td>Visa xxxx-9850 Gebre</td>
+                </tr>
+                <tr>
+                    <td>Item Order</td>
+                    <td>$95</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td>Order Total</td>
+                    <td>$95</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button (click)="placeOrder()" style="background-color:orange;width: 50%;">Place Order</button></td>
+
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
