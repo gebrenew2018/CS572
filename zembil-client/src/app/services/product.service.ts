@@ -43,7 +43,23 @@ productForm:FormGroup= new FormGroup({
   getCart(userid){
     return this.http.get(environment.apiBaseUrl+'/cart/'+userid,this.noAuthHeader);
   }
-  postOrder(userid:any,order:any){
+  removeFromCart(userid,item){
+    console.log(item);
+    return this.http.delete(environment.apiBaseUrl+'/cart/removeItem-from-cart/'+userid+'/'+item._id);
+  }
+    postOrder(userid:any,order:any){
     return this.http.post(environment.apiBaseUrl+"/orders/"+userid,order);
+  }
+  getOrders(userid:any){
+    return this.http.get(environment.apiBaseUrl+"/orders/"+userid,this.noAuthHeader);
+  }
+  getSellersOrders(){
+    return this.http.get(environment.apiBaseUrl+"/orders",this.noAuthHeader);
+  }
+  cancelOrder(orderid){
+    return this.http.delete(environment.apiBaseUrl+"/orders/"+orderid,this.noAuthHeader);
+  }
+   changeStatus(changeStatus){
+    return this.http.post(environment.apiBaseUrl+"/orders/change-status/"+status,this.noAuthHeader);
   }
 }

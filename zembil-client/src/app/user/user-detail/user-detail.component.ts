@@ -33,7 +33,7 @@ export class UserDetailComponent implements OnInit {
         }else{
           this.userService.deleteToken();
           this.router.navigateByUrl('/users/information');
-        }    
+        }
       });
   }
   onLogout(){

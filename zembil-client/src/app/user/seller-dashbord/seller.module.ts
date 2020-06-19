@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -18,7 +19,8 @@ import { OrderListComponent } from './order-list/order-list.component';
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
   ]
 })
 export class SellerModule { }
