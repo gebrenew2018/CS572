@@ -2,8 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 // components  imports
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/shared/header/header.component';
@@ -26,16 +26,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { AccessDeniedComponent } from './components/shared/access-denied/access-denied.component';
 import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 import { InformationComponent } from './components/shared/information/information.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { ProductService } from './services/product.service';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { CreditsComponent } from './components/credits/credits.component';
-
 
 @NgModule({
   declarations: [
@@ -51,12 +48,10 @@ import { CreditsComponent } from './components/credits/credits.component';
     AccessDeniedComponent,
     PageNotFoundComponent,
     InformationComponent,
-    OrderSummaryComponent,
-    CreditsComponent
+    OrderSummaryComponent
   ],
   imports: [
-
-  BrowserModule,
+    BrowserModule,
     BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
@@ -65,21 +60,21 @@ import { CreditsComponent } from './components/credits/credits.component';
     ReactiveFormsModule,
     NoopAnimationsModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
     MatTableModule,
     MatFormFieldModule,
     MatGridListModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
-    ToastrModule.forRoot()
-
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
-    multi:true
+    multi: true
   },
-    AuthGuard,UserService,ProductService],
+    AuthGuard, UserService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

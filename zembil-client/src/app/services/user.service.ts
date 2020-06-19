@@ -61,6 +61,7 @@ deleteToken(){
   localStorage.removeItem('token');
   localStorage.removeItem('user');
   localStorage.removeItem('order');
+  localStorage.removeItem('item');
 }
 getUserpayload(){
   var token = this.getToken();

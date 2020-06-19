@@ -7,7 +7,7 @@ router.post('/:userid', orderController.placeOrder);
 router.get('/:userid', orderController.getOrders);
 router.get('/', orderController.getSellersOrders);
 router.delete('/:orderid', orderController.cancelOrder);
-router.delete('/change-status/:orderid', orderController.changeStatus);
+router.put('/change-status', orderController.changeStatus);
 
 
 

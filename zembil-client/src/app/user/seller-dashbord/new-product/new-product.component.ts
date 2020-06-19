@@ -19,12 +19,7 @@ export class NewProductComponent implements OnInit {
       this.router.navigate(['users','signin'])
     }
   }
-  // fileChange(element) {
-  //   this.uploadedFiles = element.target.files;
-  //   }
   onSubmit(productform){
-    // const formData = new FormData();
-    // formData.append('image', this.productService.productForm.get('image').value);
     this.productService.postProduct(this.user._id,productform.value).subscribe(res=>{
       this.router.navigate(['users','seller-dashbord','product-list'])
     })

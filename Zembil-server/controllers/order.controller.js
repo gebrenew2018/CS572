@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const Order = mongoose.model('Order');
-const Cart = mongoose.model('Shoppingcart')
-
-
-module.exports.placeOrder = ()=> {
+const Cart = mongoose.model('Shoppingcart');
+const User = mongoose.model('User');
+const EmailSender = require('.../../../config/mailSender')
 
 module.exports.placeOrder = (req, res, next) => {
     console.log(req.params.userid);
@@ -20,6 +19,15 @@ module.exports.placeOrder = (req, res, next) => {
     })
     order.save((err, order) => {
         if (!err) {
+            User.findById({ _id: order.user }, (err, user) => {
+                var email = {
+                    orderid: order._id,
+                    email: user.email,
+                    status: "Ordered"
+                }
+                req.body = email;
+                const emailSender = EmailSender.send(email);
+            })
             console.log('order saved', order);
             Cart.deleteOne({ user: order.user }, (err) => {
                 if (!err)
@@ -30,7 +38,6 @@ module.exports.placeOrder = (req, res, next) => {
         } else {
             console.log('error', err);
         }
-
 
     })
     res.send({ message: 'Ok' })
@@ -54,28 +61,55 @@ module.exports.getSellersOrders = (req, res, next) => {
         }
     })
 }
-module.exports.cancelOrder = (req, res, next) => {
-    Order.deleteOne({ _id: req.params.orderid, status: "Ordered" }, (err, order) => {
-        if (!err) {
-            console.log('deleted');
-            res.send({ message: 'Order successfully cancelled' })
-        } else {
-            console.log('not deleted');
-            res.send({ message: 'This order is either shipped or delevered' })
+module.exports.cancelOrder = async(req, res, next) => {
+    const existingOrder = await Order.find({ _id: req.params.orderid, status: "Ordered" });
 
-        }
-    })
-}
-module.exports.changeStatus = (req, res, next) => {
-    Order.findByIdAndUpdate(req.params.orderid, (err, order) => {
-        if (!err) {
-            console.log(order);
-            res.send({ message: 'Order status successfully changed' })
-        } else {
-            console.log('not changed');
-            res.send({ message: 'Error in changin status' })
+    if (existingOrder.length == 0) {
+        res.send({ message: 'This order is either shipped or delevered' })
+    } else {
+        Order.deleteOne({ _id: req.params.orderid, status: "Ordered" }, (err, order) => {
+            if (!err) {
 
-        }
-    })
+                User.findById({ _id: existingOrder[0].user }, (err, user) => {
+                    var email = {
+                        orderid: existingOrder[0]._id,
+                        email: user.email,
+                        status: "Cancelled"
+                    }
+                    req.body = email;
+                    const emailSender = EmailSender.send(email);
+                })
+                res.send({ message: 'Order successfully cancelled' })
+
+            } else {
+                console.log('not deleted');
+                res.send({ message: 'This order is either shipped or delevered' })
+
+            }
+        })
+    }
+
+
 }
+module.exports.changeStatus = async(req, res, next) => {
+    const orderid = req.body.status.split(' ')[0];
+    const status = req.body.status.split(' ')[1];
+    console.log('orderId:' + orderid)
+    console.log('Status:' + status)
+    const existingOrder = await Order.findOne({ _id: orderid })
+    const user = await User.findById({ _id: existingOrder.user })
+    console.log(user);
+
+    existingOrder.status = status
+    await existingOrder.save();
+    // send email
+    var email = {
+        orderid: existingOrder._id,
+        email: user.email,
+        status: status
+    }
+    req.body = email;
+    const emailSender = EmailSender.send(email);
+    //end of send email
+    res.send({ message: 'Status Updated.' })
 }

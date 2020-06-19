@@ -1,53 +1,3 @@
-<!-- <form #registrationForm="ngForm" (ngSubmit)="registrationForm.valid && onSubmit(registrationForm)">
-    <fieldset>
-        <legend>Customer Account Creation</legend>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="">First Name</label>
-                <input matInput type="text" class="form-control" name="firstName" placeholder="First Name" #firstName="ngModel" [(ngModel)]="userService.selectedUser.firstName" required>
-                <div *ngIf="registrationForm.submitted && !firstName.valid">
-                    <label for="" style="color: red;">This field is required.</label>
-                </div>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="">Last Name</label>
-                <input type="text" class="form-control" name="lastName" placeholder="LastName" #lastName="ngModel" [(ngModel)]="userService.selectedUser.lastName" required>
-                <div *ngIf="registrationForm.submitted && !lastName.valid">
-                    <label for="" style="color: red;">This field is required.</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label for="">Email</label>
-                <input type="text" class="form-control" name="email" placeholder="Email" #email="ngModel" [(ngModel)]="userService.selectedUser.email" required [pattern]="emailRegExp">
-                <div *ngIf="registrationForm.submitted && email.errors">
-                    <label *ngIf="email.errors.required" for="" style="color: red;">This field is required.</label>
-                    <label *ngIf="email.errors.pattern" for="" style="color: red;">Invalid Email address.</label>
-                </div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" required minlength="5">
-                <div *ngIf="registrationForm.submitted && !password.valid">
-                    <label *ngIf="password.errors.required" for="" style="color: red;">This field is required.</label>
-                    <label *ngIf="password.errors.minlength" style="color: red;">Password must me minimum of 5 characters.</label>
-                </div>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="">Confirm Password</label>
-                <input type="password" class="form-control" name="confirm" placeholder="Confirm" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-info"><i class="fa fa-database" style="float: right;"></i> Submit</button>
-        </div>
-    </fieldset>
-</form> -->
 <form [formGroup]="userService.form" class="my-form" (ngSubmit)="userService.form && onSubmit(userService.form)">
     <mat-grid-list cols="2" rowHeight="450px">
         <mat-grid-tile>
@@ -79,19 +29,12 @@
                     </mat-select>
 
                 </mat-form-field>
-                <!-- <mat-form-field>
-                    <mat-select formControlName="role" placeholder="Register as" required>
-                        <mat-option *ngFor="let role of roles" value="role.Id">
-                            {{role.Description}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field> -->
 
                 <div>
                     <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Register</button>
                 </div>
             </div>
         </mat-grid-tile>
-        <mat-grid-tile>image</mat-grid-tile>
+        <mat-grid-tile><img src="https://i1.wp.com/2020.ieeeicassp.org/wp-content/uploads/2020/01/registration1.jpg?fit=855%2C515&ssl=1&w=640" height="300px" width="500px" alt=""></mat-grid-tile>
     </mat-grid-list>
 </form>

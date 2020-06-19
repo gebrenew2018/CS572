@@ -33,10 +33,9 @@
         <mat-cell *matCellDef="let element"> <br>
             <form [formGroup]="form" (ngSubmit)="changeOrderStatus(form)">
                 <mat-form-field>
-                    <input type="hidden" formControlName="orderid" value="{{element._id}}">
                     <mat-select formControlName="status" placeholder="Status" required>
-                        <mat-option value="Shipped">Shipped </mat-option>
-                        <mat-option value="Delivered">Delivered </mat-option>
+                        <mat-option value="{{element._id}} Shipped">Shipped </mat-option>
+                        <mat-option value="{{element._id}} Delivered">Delivered </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <div>

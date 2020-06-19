@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -12,9 +14,14 @@ export class EditProductComponent implements OnInit {
 
   images=[];
   editProductForm:FormGroup;
-  constructor(public productService:ProductService,private router:Router) { }
+  constructor(private userService:UserService, private toaster:ToastrService, public productService:ProductService,private router:Router) { }
 
   ngOnInit() {
+    if(!this.userService.isLoggedIn()){
+      this.toaster.info('Please Login first','Zembil Online');
+      this.router.navigateByUrl('/users/signin');
+    }
+    else{
     // this.productService.productForm.setValue(this.productService.selectedProduct);
     this.initForm();  
   this.editProductForm.setValue({
@@ -24,7 +31,7 @@ export class EditProductComponent implements OnInit {
     quantity: this.productService.selectedProduct.quantity,
     category: '',
     imageUrl:this.productService.selectedProduct.imageUrl
-})
+})}
   } 
   initForm(){
     this.editProductForm= new FormGroup({
@@ -39,14 +46,10 @@ export class EditProductComponent implements OnInit {
    selectImage(event){
      this.images=event.target.files;
      console.log(this.images);
-    // if(event.target.files.length>0){
-    //   this.images = event.tartget.files;
-    //   console.log(this.images);      
-    // }
   }
   onSubmit(productform){
-    console.log(productform.value);
     this.productService.updateProduct(productform.value).subscribe(res=>{
+      this.toaster.success('Product Successfully Updated','Zembil Online');
       this.router.navigate(['users','seller-dashbord','product-list'])
     })
   }

@@ -1,3 +1,23 @@
+// import { Component, OnInit } from '@angular/core';
+// import { Router } from '@angular/router';
+
+// @Component({
+//   selector: 'app-order-summary',
+//   templateUrl: './order-summary.component.html',
+//   styleUrls: []
+// })
+// export class OrderSummaryComponent implements OnInit {
+
+//   constructor(private router:Router) { }
+
+//   ngOnInit(): void {
+//   }
+//   goToHome(){
+//     this.router.navigate(['users','user-dashbord','all-products'])
+//   }
+// }
+
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -18,11 +38,8 @@ orderDate;
   ngOnInit(): void {
     this.ordno="2345678";
     this.totalCharged="150"
-    this.orderDate="6/18/2020"
-
-
+    this.orderDate= Date.now();
   }
-
   goToHome(){
     this.router.navigate(['users','user-dashbord','all-products'])
   }

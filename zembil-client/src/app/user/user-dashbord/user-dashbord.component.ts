@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-dashbord',
@@ -9,10 +10,17 @@ import { Router } from '@angular/router';
 })
 export class UserDashbordComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private toaster: ToastrService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['users','user-dashbord','all-products'])
+    if(!this.userService.isLoggedIn()){
+      this.toaster.info('Please Login first','Zembil Online');
+      this.router.navigateByUrl('/users/signin');
+    }
+    else
+    {
+      this.router.navigate(['users','user-dashbord','all-products'])
+    }
   }
   myOrders(){
     this.router.navigate(['users','user-dashbord','my-orders'])
