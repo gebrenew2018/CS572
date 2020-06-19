@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Order = mongoose.model('Order');
 const Cart = mongoose.model('Shoppingcart')
 
+
+module.exports.placeOrder = ()=> {
+
 module.exports.placeOrder = (req, res, next) => {
     console.log(req.params.userid);
     console.log(req.body);
@@ -27,6 +30,7 @@ module.exports.placeOrder = (req, res, next) => {
         } else {
             console.log('error', err);
         }
+
 
     })
     res.send({ message: 'Ok' })
@@ -73,4 +77,5 @@ module.exports.changeStatus = (req, res, next) => {
 
         }
     })
+}
 }
