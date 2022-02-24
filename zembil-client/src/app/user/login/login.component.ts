@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/users/details')
       },
       err => {
+        this.router.navigateByUrl('/users/details');
         this.toaster.error('Something went wrong. please try again or contact admin.','Zembil Online');
       }
     );

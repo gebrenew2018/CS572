@@ -1,12 +1,12 @@
-<form class="credit-card" [formGroup]="creditService.creditForm" (ngSubmit)="onSubmit(creditService.creditForm)"  >
+<form class="credit-card" [formGroup]="creditService.creditForm" (submit)="onSubmit(creditService.creditForm)"  >
     <div class="form-header">
       <h4 class="title">Credit card detail</h4>
     </div>
-   
+
     <div class="form-body">
       <!-- Card Number -->
       <input type="text" class="card-number" formControlName="cardNumber" placeholder="Card Number" >
-   
+
       <!-- Date Field -->
       <div class="date-field">
         <div class="month">
@@ -39,7 +39,7 @@
           </select>
         </div>
       </div>
-   
+
       <!-- Card Verification Field -->
       <div class="card-verification">
         <div class="cvv-input">
@@ -49,7 +49,7 @@
           <p>4 digits usually found <br> on the signature strip</p>
         </div>
       </div>
-    
+
       <!-- Buttons -->
       <button class="proceed-btn" type="submit"><a href="#">Register</a></button>
     </div>
